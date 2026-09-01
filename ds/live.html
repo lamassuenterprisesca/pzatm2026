@@ -497,7 +497,34 @@
         }
 
         .fb-footer a { color: #65676b; }
-    </style>
+    
+        /* Desktop comments visibility safeguard */
+        @media (min-width: 768px) {
+            .fb-comments-section,
+            .fb-write-comment,
+            #comments-container,
+            .fb-comment-item {
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+
+            .fb-comments-section,
+            #comments-container {
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+
+            .fb-comments-section {
+                padding: 8px 16px 0 !important;
+            }
+
+            .fb-write-comment {
+                width: 100% !important;
+            }
+        }
+
+</style>
 </head>
 <body>
 
