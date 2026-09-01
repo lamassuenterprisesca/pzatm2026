@@ -8,18 +8,20 @@
 <script>
 (function () {
   const params = new URLSearchParams(window.location.search);
-  const host = window.location.hostname.toLowerCase();
-  const isPreview =
-    window.location.protocol === "file:" ||
-    host === "localhost" ||
-    host === "127.0.0.1" ||
-    host.includes("chatgpt") ||
-    host.includes("openai") ||
-    host.includes("sandbox");
 
-  if (!isPreview && params.get("pz") !== "vdrd") {
-    window.location.replace("index-c.html");
+  // Only allow this page when the exact gate is present.
+  if (params.get("pz") === "vdrd") {
+    return;
   }
+
+  // Prevent a redirect loop if this code ever ends up on index-c.html.
+  const currentPath = window.location.pathname.replace(/\/+$/, "");
+  if (currentPath.endsWith("/index-c.html") || currentPath === "/index-c.html") {
+    return;
+  }
+
+  // Redirect to the site-root index-c.html exactly once.
+  window.location.replace("/index-c.html");
 })();
 </script>
 
