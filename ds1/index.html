@@ -15,6 +15,8 @@
 })();
 </script>
 
+<script src="https://www.digistore24-scripts.com/service/digistore.js"></script><script>digistoreUpsell()</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -200,7 +202,7 @@ footer{text-align:center;padding:25px;color:#777;font:11px Arial,sans-serif}
   <p>If you want the additional training, click the green button below. If you don’t, simply decline and continue.</p>
 </section>
 
-<section class="offer" id="offer">
+<section class="offer">
   <div class="wrap">
     <h2>Get The Algorithm Update</h2>
     <p class="offer-sub">Add the advanced Pocket-Sized ATM algorithm training to your order at the reduced downsell price.</p>
@@ -225,47 +227,5 @@ footer{text-align:center;padding:25px;color:#777;font:11px Arial,sans-serif}
 
 
 <footer>© 2026 Pocket-Sized ATM. All Rights Reserved.</footer>
-
-<script>
-(function () {
-  const params = new URLSearchParams(window.location.search);
-
-  // Manual override only. If showoffer is not exactly "1",
-  // do nothing so normal timer logic remains untouched.
-  if (params.get("showoffer") !== "1") return;
-
-  function forceShowOffer() {
-    const offer = document.getElementById("offer");
-    if (!offer) return;
-
-    offer.hidden = false;
-    offer.removeAttribute("hidden");
-    offer.removeAttribute("x-cloak");
-    offer.style.removeProperty("display");
-    offer.style.removeProperty("visibility");
-    offer.style.removeProperty("opacity");
-
-    // If another script/timer has applied display:none inline,
-    // force visibility only for the explicit showoffer=1 override.
-    const computed = window.getComputedStyle(offer);
-    if (computed.display === "none") {
-      offer.style.setProperty("display", "block", "important");
-    }
-    if (computed.visibility === "hidden") {
-      offer.style.setProperty("visibility", "visible", "important");
-    }
-    if (computed.opacity === "0") {
-      offer.style.setProperty("opacity", "1", "important");
-    }
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", forceShowOffer);
-  } else {
-    forceShowOffer();
-  }
-})();
-</script>
-
 </body>
 </html>
