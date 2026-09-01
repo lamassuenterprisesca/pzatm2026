@@ -1,1 +1,363 @@
-<html>hello world</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pocket-Sized ATM | Official Digital Training Program</title>
+
+  <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+  <script type="text/javascript">
+    digistorePromocode({ "product_id": 728398, "adjust_domain": true });
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7f6;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    .wrap { width: min(960px, calc(100% - 32px)); margin: 0 auto; }
+    header {
+      background: #0f5132;
+      color: #fff;
+      padding: 18px 0;
+    }
+    header .brand { font-size: 22px; font-weight: 800; }
+    .hero {
+      background: #fff;
+      padding: 56px 0 44px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.08; margin: 0 0 18px; }
+    h2 { font-size: 28px; margin-top: 0; }
+    .sub { font-size: 19px; color: #4b5563; max-width: 760px; }
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 28px;
+      margin: 28px 0;
+    }
+    .price-box {
+      background: #eef8f2;
+      border: 1px solid #cce9d8;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 28px;
+    }
+    .price { font-size: 46px; font-weight: 800; color: #0f5132; margin: 4px 0; }
+    .small { font-size: 14px; color: #6b7280; }
+    .cta {
+      display: inline-block;
+      margin-top: 14px;
+      background: #16834f;
+      color: white;
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 800;
+      padding: 15px 28px;
+      border-radius: 9px;
+    }
+    ul { padding-left: 22px; }
+    .notice {
+      background: #fff8e8;
+      border: 1px solid #f4d58d;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 22px 0;
+    }
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      padding: 34px 0;
+      margin-top: 48px;
+      font-size: 13px;
+    }
+    footer a { color: #fff; }
+    .legal { font-size: 13px; color: #4b5563; }
+    .trust-placeholder {
+      border: 2px dashed #9ca3af;
+      padding: 18px;
+      text-align: center;
+      color: #6b7280;
+      margin: 24px 0;
+      background: #fafafa;
+    }
+  
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .product-visual {
+      background:
+        radial-gradient(circle at 50% 15%, rgba(22,131,79,.16), transparent 40%),
+        linear-gradient(180deg, #fbfdfc 0%, #eef7f1 100%);
+      border: 1px solid #d9e7de;
+      border-radius: 18px;
+      padding: 26px;
+      text-align: center;
+    }
+
+    .product-visual img {
+      display: block;
+      width: min(100%, 390px);
+      max-height: 430px;
+      object-fit: contain;
+      margin: 0 auto;
+      filter: drop-shadow(0 22px 28px rgba(0,0,0,.16));
+    }
+
+    .product-caption {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #667085;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0 0;
+    }
+
+    .trust-item {
+      background: #f9fbfa;
+      border: 1px solid #e2e9e5;
+      border-radius: 10px;
+      padding: 13px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #34443a;
+    }
+
+    .section-kicker {
+      color: #16834f;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .faq-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px;
+      background: #fafcfb;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #183a29;
+    }
+
+    .compliance-note {
+      border-left: 4px solid #16834f;
+      background: #f2fbf6;
+      padding: 16px 18px;
+      margin-top: 18px;
+      font-size: 14px;
+      color: #42564a;
+    }
+
+    .checkout-note {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #667085;
+    }
+
+    @media (max-width: 760px) {
+      .hero-grid,
+      .faq-grid,
+      .trust-row {
+        grid-template-columns: 1fr;
+      }
+
+      .product-visual {
+        order: -1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Pocket-Sized ATM</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="section-kicker">Digital Training Program</div>
+        <h1>Pocket-Sized ATM</h1>
+        <p class="sub">
+          Pocket-Sized ATM is a digital educational training program delivered through a private online
+          members area. It includes a welcome lesson and six training modules covering online-business
+          and digital-marketing concepts in a structured, step-by-step format.
+        </p>
+
+        <div class="trust-row">
+          <div class="trust-item">Digital Product</div>
+          <div class="trust-item">One-Time Payment</div>
+          <div class="trust-item">60-Day Return Period</div>
+        </div>
+
+        <div class="price-box">
+          <div>One-time purchase</div>
+          <div class="price">$47</div>
+          <div>No recurring subscription.</div>
+          <a class="cta" href="https://www.checkout-ds24.com/product/728398?utm_source=compliance&ds24tr=compliance">Continue to Secure Checkout</a>
+          <div class="checkout-note">Payment and order processing are handled securely by Digistore24.</div>
+        </div>
+      </div>
+
+      <div class="product-visual">
+        <img
+          src="/images/ger-bankomat.png"
+          alt="Pocket-Sized ATM digital training program product image"
+        />
+        <div class="product-caption">Pocket-Sized ATM digital training program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section class="card">
+    <h2>What you receive</h2>
+    <ul>
+      <li>Access to the Pocket-Sized ATM online members area.</li>
+      <li>One introductory welcome lesson.</li>
+      <li>Six digital training modules.</li>
+      <li>On-demand access to the training through your web browser.</li>
+      <li>Educational materials intended for personal learning and implementation.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>How the product is delivered</h2>
+    <p>
+      This is a digital product. No physical item will be shipped. Following a successful purchase,
+      customers receive electronic access instructions for the private online members area, where the
+      training videos and course material can be viewed through a web browser.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>60-day refund policy</h2>
+    <p>
+      This product is offered with a 60-day return period. Requests must be made within
+      60 days of purchase and are handled according to the refund and return terms displayed
+      on the Digistore24 order form.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Important earnings disclaimer</h2>
+    <div class="notice">
+      Pocket-Sized ATM is an educational product. It does not guarantee income, profits, business
+      success, or any specific financial result. Results vary by individual and depend on many
+      factors, including effort, experience, market conditions, implementation, and other circumstances.
+      Some customers may earn no money at all.
+    </div>
+    <p class="legal">
+      Any examples, illustrations, or discussions of potential business outcomes are for educational
+      purposes only and should not be interpreted as a promise or guarantee of future earnings.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Who this is for</h2>
+    <p>
+      Pocket-Sized ATM is intended for adults who want educational material about online business
+      and digital marketing. It is not financial, investment, legal, tax, or employment advice.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Support</h2>
+    <p>
+      If you have questions about product access or delivery, please contact the support address
+      listed on the Digistore24 order confirmation or your product-access email.
+    </p>
+  </section>
+
+  <section class="card">
+    <div class="section-kicker">Purchase Information</div>
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <strong>Is this a physical product?</strong>
+        No. Pocket-Sized ATM is delivered digitally through an online members area.
+      </div>
+
+      <div class="faq-item">
+        <strong>Is this a subscription?</strong>
+        No. The advertised price on this page is a one-time payment of $47.
+      </div>
+
+      <div class="faq-item">
+        <strong>What do I receive?</strong>
+        Access to a welcome lesson and six digital training modules inside the Pocket-Sized ATM members area.
+      </div>
+
+      <div class="faq-item">
+        <strong>Are earnings guaranteed?</strong>
+        No. This is educational material and no specific income, profit, or business result is guaranteed.
+      </div>
+    </div>
+
+    <div class="compliance-note">
+      Before submitting this page for approval, make sure the $47 price, one-time billing model,
+      60-day return period, product type, and delivery method exactly match Product 728398 in your
+      Digistore24 account.
+    </div>
+  </section>
+
+  <div class="trust-placeholder">
+    INSERT YOUR OFFICIAL DIGISTORE24 “SALES PAGE BADGE” EMBED CODE HERE.<br>
+    For US approval, configure the badge/footer with the earnings disclaimer enabled.
+  </div>
+
+  <section class="price-box">
+    <h2>Get Pocket-Sized ATM</h2>
+    <div class="price">$47</div>
+    <div>One-time payment • Digital delivery • No recurring subscription • 60-day return period</div>
+    <a class="cta" href="https://www.checkout-ds24.com/product/728398?utm_source=compliance&ds24tr=compliance">Go to Digistore24 Checkout</a>
+  </section>
+
+  <div class="trust-placeholder">
+    The official Digistore24 Sales Page Footer is automatically included with the trust badge setup.
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>Pocket-Sized ATM</strong><br><br>
+    This website provides educational information only. No earnings are guaranteed.<br><br>
+    Digistore24 acts as the reseller and processes the transaction through its secure order form.
+  </div>
+</footer>
+
+</body>
+</html>
