@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Wait — The Algorithm Update</title>
+
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("pz") !== "vdrd") {
+    window.location.replace("index-c.html");
+  }
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#171717;font-family:Georgia,"Times New Roman",serif}
+.wrap{width:min(960px,calc(100% - 28px));margin:auto}
+.warning{background:#c91717;color:#fff;text-align:center;padding:10px 15px;font-family:Arial,sans-serif;font-weight:800}
+.warning b{color:#ffe66d}
+.header{padding:26px 0 20px;text-align:center}
+.wait{font:700 clamp(45px,7vw,76px)/1 Oswald,Arial,sans-serif;color:#c91717;margin:0}
+.pre{font-size:18px;margin:7px 0 8px;font-weight:bold}
+.marker{display:inline;background:#fff19c;padding:2px 5px}
+h1{font-size:clamp(28px,4.6vw,46px);line-height:1.16;margin:18px auto 10px;max-width:880px}
+.sub{font-size:20px;line-height:1.5;max-width:820px;margin:0 auto;color:#373737}
+.red{color:#c91717}
+.video-note{margin:25px auto 0;max-width:850px;background:#f5f5f5;border:1px solid #ddd;padding:14px 18px;font:bold 15px Arial,sans-serif}
+.story{max-width:820px;margin:0 auto;padding:28px 0;font-size:19px;line-height:1.7}
+.story p{margin:0 0 21px}
+.story h2{text-align:center;font-size:32px;line-height:1.25;margin:35px 0 20px}
+.callout{margin:28px 0;padding:24px;border:3px dashed #d1a65c;background:#fff7d7;text-align:center}.callout .big{font:700 38px Oswald,Arial,sans-serif;color:#c91717;text-transform:uppercase}.callout .small{font:bold 17px/1.5 Georgia,serif;margin-top:8px}.big-question{border-left:6px solid #c91717;background:#fff8e4;padding:20px 23px;margin:28px 0;font-size:24px;font-weight:bold;line-height:1.45}
+.bullets{background:#f8f8f8;border:1px solid #ddd;padding:22px 25px;margin:25px 0}
+.bullets div{padding:9px 0;font-weight:bold}
+.bullets span{color:#168147;margin-right:7px}
+.testimonial-section{background:#f3f3f3;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:42px 0}
+.testimonial-section h2{text-align:center;font-size:34px;margin:0 0 25px}
+.testimonial{background:#fff;border:1px solid #d9d9d9;border-radius:6px;padding:24px;margin:0 auto 18px;max-width:820px;box-shadow:0 3px 12px rgba(0,0,0,.05)}
+.quote{font-size:18px;line-height:1.65;margin:0 0 14px}
+.person{font:bold 14px Arial,sans-serif;color:#555}
+.offer{padding:42px 0;background:#eef1ef;border-top:1px solid #d5d8d6}
+.offer h2{text-align:center;font-size:38px;margin:0 0 10px}
+.offer-sub{text-align:center;font-size:19px;max-width:760px;margin:0 auto 30px;line-height:1.55}
+.box{max-width:850px;margin:auto;background:#fffdf5;border:2px solid #d8cda9;border-radius:8px;padding:30px;text-align:center}
+.product{font:700 31px Oswald,Arial,sans-serif;text-transform:uppercase}
+.old{font:18px Arial,sans-serif;color:#666;margin-top:15px}.old s{font-size:24px}
+.today{font:bold 19px Arial,sans-serif;margin-top:8px}
+.price{font:700 78px/1 Oswald,Arial,sans-serif;color:#08794a;margin:4px 0 8px}
+.billing{font:14px Arial,sans-serif;color:#666;margin-bottom:22px}
+.cta{display:block;max-width:720px;margin:auto;padding:19px 15px;background:linear-gradient(#21ad65,#078146);border:2px solid #066c3c;border-radius:7px;box-shadow:0 5px 0 #075b36;color:#fff;text-decoration:none;font:700 clamp(19px,3vw,28px) Oswald,Arial,sans-serif;text-transform:uppercase}
+.cta:hover{filter:brightness(1.04)}
+.under{font:12px Arial,sans-serif;color:#666;margin-top:14px}
+.no{text-align:center;margin:24px 0 0}.no a{color:#666;font:13px Arial,sans-serif;text-decoration:underline}
+.guarantee{max-width:820px;margin:30px auto 0;background:#fff;border:1px solid #ddd;padding:22px;font-size:16px;line-height:1.6}
+.final{padding:35px 0}
+.disclaimer{max-width:820px;margin:auto;color:#777;font:11px/1.6 Arial,sans-serif;text-align:center}
+footer{text-align:center;padding:25px;color:#777;font:11px Arial,sans-serif}
+@media(max-width:650px){
+ .story{font-size:18px}.testimonial{margin-left:14px;margin-right:14px}
+ .box{margin:0 14px;padding:24px 16px}.price{font-size:68px}
+}
+</style>
+</head>
+<body>
+
+<div class="warning"><b>WAIT!</b> Before you continue, there’s one more option for your Pocket-Sized ATM upgrade.</div>
+
+<header class="header wrap">
+  <div class="wait">WAIT!</div>
+  <div class="pre">You passed on The Algorithm Update at $97...</div>
+  <h1>So I’ve Got <span class="red">One More Option</span> For You Before You Continue</h1>
+  <p class="sub"><span class="marker">Get the same Algorithm Update training for a one-time payment of just $67.</span></p>
+  <div class="video-note">IMPORTANT: This is an optional upgrade. Your original Pocket-Sized ATM order remains intact whether you accept or decline.</div>
+</header>
+
+<section class="story">
+  <p><strong>Hi, it’s Ben here.</strong></p>
+
+  <p>I know you just passed on The Algorithm Update at $97...</p>
+
+  <p>So before you continue, MR.X &amp; I decided to give you one final chance to activate it for just <strong>$67.</strong></p>
+
+  <p>And I want to remind you exactly why this matters.</p>
+
+  <p><strong>Making money is only half of the equation.</strong></p>
+
+  <div class="big-question">
+    The second half? Making what I like to call <span class="red">“Truly Hands Free Income.”</span>
+  </div>
+
+  <p>And when I say “Hands Free”... I mean Hands Free.. As in zero work from your end.</p>
+
+  <p>And that’s exactly what this Algorithm allows us to do… The best part is that this algorithm is already installed into your Pocket Sized ATM Machine, you just need to activate it.</p>
+
+  <h2>Do You Want To Have A “Lifestyle” Business?</h2>
+
+  <div class="bullets">
+    <div><span>✓</span> <strong>Works for you even if...</strong> you don’t feel like working today</div>
+    <div><span>✓</span> <strong>Works for you even if...</strong> you’re on a vacation in Hawaii or the Maldives</div>
+    <div><span>✓</span> <strong>Works for you even if...</strong> you don’t have access to an internet connection</div>
+  </div>
+
+  <p>While the Pocket Sized ATM Machine is as close as it comes to passive online income, it still requires some work to be maintained (Around 7 minutes a day)...</p>
+
+  <p>Issue is, sometimes even 7 minutes a day can often be challenging, simply because life gets in the way.</p>
+
+  <p>That’s when MR.X and I set out to uncover the secret to truly passive income.</p>
+
+  <p>And that’s when we stumbled upon what experts from MR.X’s team are now referring to as:</p>
+
+  <div class="callout">
+    <div class="big">The “Netflix Algorithm”</div>
+    <div class="small">A simple yet powerful algorithm used by giants like Netflix to milk billions of dollars every single day…</div>
+  </div>
+
+  <p>It’s their bread and butter…</p>
+
+  <p>And it’s not just Netflix.</p>
+
+  <p><strong>Youtube, Google, Apple, even Spotify all use this algorithm.</strong></p>
+
+  <p>Now, when MR.X and I realized this, we knew we’d stumbled on a goldmine. A way to create an automated dependable income stream that’ll always works no matter what (Even with ZERO work from our end).</p>
+
+  <p>So MR.X and his team got to work, recreated the Algorithm and installed it directly into every Pocket Sized ATM Machine…</p>
+
+  <div class="big-question">
+    Your copy of the Pocket Sized ATM Machine has it aswell — you just need to <span class="red">ACTIVATE IT.</span>
+  </div>
+
+  <h2>Introducing The “ALGORITHM” Update</h2>
+
+  <p><strong>The First &amp; Only Replica Of The Algorithm Used By Netflix, Apple, YouTube &amp; Spotify</strong> (Strongly Recommended For Users Who Are Low On Time &amp; Want To Accelerate Their “Hands Free Profits” from the pocket sized atm machine).</p>
+
+  <p>The “ALGORITHM UPDATE” is the one and only replica of the algorithm used by giants like Netflix, Apple, YouTube &amp; Spotify. It works by activating a series of code deeply coded into the Pocket Sized ATM Machine to accelerate profits generated from the Pocket Sized ATM Machine.</p>
+
+  <p>Users of all walks of life have reported breakthroughs thanks to this algorithm update. Especially those who don’t have much time on their hands, or can’t always maintain 7 minutes a day...</p>
+
+  <p>We all have days where we get busy with life... Maybe we’re sick, or out on a family trip, or with that special someone...</p>
+
+  <div class="big-question">
+    But that doesn’t mean your income has to stop working. By activating the algorithm update, you can say hi to truly <span class="red">“Hands Free Income.”</span>
+  </div>
+
+  <p>Which Is Why MR.X &amp; I Already Installed The Algorithm Into Your Pocket Sized ATM Machine.</p>
+
+  <p>That means all you have to do is Activate it, and the code installed into the system will begin working it’s magic the very second you activate it.</p>
+
+  <p>You don’t have to code or setup anything. MR.X’s team have already coded the algorithm into every Pocket Sized ATM Machine... Once you activate it here today, The Algorithm will begin working it’s magic behind the scenes...</p>
+
+  <h2>And This Time, I’m Not Asking You For $97.</h2>
+
+  <p>If price was the reason you said no a moment ago, I want to remove that obstacle.</p>
+
+  <p>So if you’re serious about having truly hands free autopilot income, then go ahead and hit the button below to upgrade your offer for a mere <strong>$67.</strong></p>
+
+  <p>Once you do, the code for the “Algorithm” will automatically be activated, and you won’t have to do a single thing. You’ll also receive detailed instructions in your email on how to ensure the algorithm is working for you.</p>
+</section>
+
+<section class="testimonial-section">
+  <div class="wrap">
+    <h2>Here’s What Customers Shared</h2>
+
+    <article class="testimonial">
+      <p class="quote">“When I first stumbled upon your site, I'll confess, I thought it was all a load of baloney... within my first month, I went on to make $3,218... When you sent me that email last month about this ‘algorithm’ update, I replied as fast as I could to get my hands on it... I’ve added $38,280 to my name in the last 30 days!”</p>
+      <div class="person">— Michael Wedmore, Boise, Idaho</div>
+    </article>
+
+    <article class="testimonial">
+      <p class="quote">“I’d already been using MR.X’s 7 minutes a day system. Cash was starting to flow in... But when you and MR.X released the new Algorithm update, things took a turn for the better... I remember waking up in the middle of the night... And what I saw shocked me... $1,289... Literally overnight.”</p>
+      <div class="person">— Cameron Anderson, Denver, Colorado</div>
+    </article>
+
+    <article class="testimonial">
+      <p class="quote">“Picture this: I used to fantasize about waking up to money magically appearing in my account. And now? It’s not a fantasy — it’s my reality!... I now spend most my time traveling the world, and creating lasting memories with my grand kids and my family.”</p>
+      <div class="person">— Julie Pattison, Vancouver, Canada</div>
+    </article>
+
+    <div class="disclaimer" style="margin-top:20px">
+      Testimonials describe individual customer experiences supplied by the seller. They are not a guarantee or representation of what a typical purchaser will achieve. Individual results vary, and some purchasers may earn no money.
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <h2>So Here’s The Deal...</h2>
+
+  <p>You already have Pocket-Sized ATM.</p>
+
+  <p><strong>This is simply your opportunity to add the Algorithm Update training at a lower price.</strong></p>
+
+  <p>There’s nothing else you need to buy on this page, and there’s no recurring subscription attached to this $67 offer.</p>
+
+  <p>If you want the additional training, click the green button below. If you don’t, simply decline and continue.</p>
+</section>
+
+<section class="offer">
+  <div class="wrap">
+    <h2>Get The Algorithm Update</h2>
+    <p class="offer-sub">Add the advanced Pocket-Sized ATM algorithm training to your order at the reduced downsell price.</p>
+
+    <div class="box">
+      <div class="product">The “Algorithm” Update</div>
+      <div class="old">Previous Upgrade Price: <s>$97</s></div>
+      <div class="today">Your Downsell Price Today:</div>
+      <div class="price">$67</div>
+      <div class="billing">ONE-TIME PAYMENT • NO RECURRING SUBSCRIPTION</div>
+
+      <a class="cta" href="https://www.digistore24.com/answer/yes?template=light">YES! ADD THE ALGORITHM UPDATE FOR $67</a>
+
+      <div class="under">Clicking the button above accepts this optional upsell through the Digistore24 order flow.</div>
+
+      <div class="no"><a href="https://www.digistore24.com/answer/no">No thanks — continue without The Algorithm Update</a></div>
+    </div>
+
+    
+  </div>
+</section>
+
+
+<footer>© 2026 Pocket-Sized ATM. All Rights Reserved.</footer>
+</body>
+</html>

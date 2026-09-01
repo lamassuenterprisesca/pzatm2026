@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Algorithm Update — Special Upgrade Option</title>
+
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const host = window.location.hostname.toLowerCase();
+  const isPreview =
+    window.location.protocol === "file:" ||
+    host === "localhost" ||
+    host === "127.0.0.1" ||
+    host.includes("chatgpt") ||
+    host.includes("openai") ||
+    host.includes("sandbox");
+
+  if (!isPreview && params.get("pz") !== "vdrd") {
+    window.location.replace("index-c.html");
+  }
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#06110d;--panel:#0a1913;--text:#f4fff8;--muted:#9db8aa;
+  --green:#35f28b;--green2:#8bffbe;--line:rgba(120,255,181,.18)
+}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--text);font-family:Inter,system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(53,242,139,.14),transparent 32%),
+    radial-gradient(circle at 85% 20%,rgba(53,242,139,.08),transparent 28%),
+    linear-gradient(180deg,#06110d 0%,#07140f 45%,#040b08 100%);
+  min-height:100vh
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:34px 34px
+}
+.wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
+.topbar{
+  border-bottom:1px solid var(--line);background:rgba(3,10,7,.78);
+  backdrop-filter:blur(14px);position:sticky;top:0;z-index:20
+}
+.topbar-inner{
+  min-height:58px;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-size:14px;font-weight:700
+}
+.topbar b{color:var(--green2)}
+.hero{padding:66px 0 28px}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:34px;align-items:center}
+.eyebrow{
+  display:inline-flex;gap:9px;align-items:center;padding:8px 12px;border:1px solid rgba(53,242,139,.25);
+  background:rgba(53,242,139,.075);border-radius:999px;color:#bfffd9;font-weight:800;font-size:12px;
+  letter-spacing:.12em;text-transform:uppercase
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 18px rgba(53,242,139,.9)}
+h1{
+  font-family:"Space Grotesk",Inter,sans-serif;font-size:clamp(44px,7vw,84px);line-height:.98;
+  letter-spacing:-.055em;margin:22px 0 20px;max-width:950px
+}
+.accent{color:var(--green2)}
+.sub{max-width:780px;font-size:clamp(18px,2vw,23px);line-height:1.6;color:#c7dbcf;margin:0 0 28px}
+.visual{
+  position:relative;min-height:470px;border:1px solid var(--line);border-radius:28px;
+  background:linear-gradient(145deg,rgba(53,242,139,.11),rgba(53,242,139,.02) 40%,rgba(255,255,255,.015)),#07130e;
+  overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.34)
+}
+.visual:before{
+  content:"";position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 26px,rgba(83,255,155,.04) 27px),
+    repeating-linear-gradient(90deg,transparent,transparent 26px,rgba(83,255,155,.04) 27px)
+}
+.orb{
+  position:absolute;inset:50% auto auto 50%;width:260px;height:260px;transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid rgba(94,255,164,.35);
+  box-shadow:0 0 0 38px rgba(53,242,139,.035),0 0 0 82px rgba(53,242,139,.025),0 0 80px rgba(53,242,139,.14);
+  display:flex;align-items:center;justify-content:center
+}
+.algo-icon{
+  width:110px;height:110px;border-radius:24px;background:linear-gradient(145deg,#38f18d,#146b43);
+  color:#03120b;display:grid;place-items:center;font-family:"Space Grotesk";font-size:52px;font-weight:700;
+  transform:rotate(-6deg);box-shadow:0 18px 55px rgba(53,242,139,.32);z-index:2
+}
+.visual-label{
+  position:absolute;left:26px;bottom:26px;right:26px;padding:18px;border:1px solid var(--line);
+  border-radius:18px;background:rgba(2,10,6,.66);backdrop-filter:blur(10px)
+}
+.visual-label small{display:block;color:var(--green2);font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
+.visual-label strong{font-family:"Space Grotesk";font-size:26px}
+.offer{
+  margin-top:28px;border:1px solid rgba(53,242,139,.24);
+  background:linear-gradient(180deg,rgba(20,56,40,.8),rgba(8,27,19,.9));
+  border-radius:26px;padding:28px;box-shadow:0 30px 70px rgba(0,0,0,.28)
+}
+.offer-label{color:#b9d5c5;text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:800}
+.price{display:flex;align-items:flex-end;gap:12px;margin:8px 0 4px}
+.price .now{font-family:"Space Grotesk";font-size:72px;font-weight:700;letter-spacing:-.06em;line-height:1}
+.price .was{color:#89a194;font-size:20px;text-decoration:line-through;padding-bottom:9px}
+.billing{color:#b9d5c5;font-size:14px;margin-bottom:20px}
+.cta{
+  display:flex;width:100%;align-items:center;justify-content:center;padding:18px 22px;min-height:64px;
+  border-radius:16px;border:1px solid rgba(165,255,204,.5);
+  background:linear-gradient(180deg,#52f69b,#28c975);color:#04130c;text-decoration:none;
+  font-weight:900;font-size:18px;box-shadow:0 14px 35px rgba(53,242,139,.18)
+}
+.cta:hover{transform:translateY(-2px)}
+.decline{text-align:center;margin-top:14px;font-size:13px}
+.decline a{color:#8ea89a;text-decoration:underline}
+.proofline{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.proof{border:1px solid var(--line);background:rgba(255,255,255,.018);border-radius:14px;padding:13px;color:#c7dacd;font-size:12px;text-align:center;font-weight:700}
+.section{padding:54px 0}
+.section-title{font-family:"Space Grotesk";font-size:clamp(32px,4vw,54px);letter-spacing:-.045em;margin:0 0 12px}
+.section-copy{color:#abc1b4;font-size:18px;line-height:1.7;max-width:820px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.card{border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:20px;padding:22px}
+.card-icon{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(53,242,139,.12);
+  border:1px solid rgba(53,242,139,.22);color:var(--green2);font-weight:900;margin-bottom:18px
+}
+.card h3{margin:0 0 8px;font-family:"Space Grotesk";font-size:21px}
+.card p{margin:0;color:#9eb4a7;line-height:1.65;font-size:14px}
+.compare{border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:28px;background:#07130e}
+.row{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;padding:17px 22px;border-top:1px solid rgba(255,255,255,.05)}
+.row:first-child{border-top:0}.row div:last-child{text-align:right;color:#d7eee0;font-weight:700}.row div:first-child{color:#91a99c}
+.final{
+  margin:54px auto 72px;border:1px solid rgba(53,242,139,.26);
+  background:radial-gradient(circle at 50% -10%,rgba(53,242,139,.16),transparent 45%),linear-gradient(180deg,#0c2118,#07130e);
+  border-radius:28px;padding:42px;text-align:center;box-shadow:0 35px 100px rgba(0,0,0,.35)
+}
+.final h2{margin:0 auto 12px;font-family:"Space Grotesk";font-size:clamp(34px,5vw,58px);letter-spacing:-.05em;max-width:800px}
+.final p{color:#a9c0b2;max-width:740px;margin:0 auto 26px;line-height:1.7}
+.final .cta{max-width:650px;margin:0 auto}
+.fine{margin:18px auto 0;max-width:800px;color:#718b7c;font-size:11px;line-height:1.6}
+footer{border-top:1px solid var(--line);color:#738c7d;padding:28px 0 40px;text-align:center;font-size:12px}
+@media(max-width:860px){
+  .hero{padding-top:40px}.hero-grid{grid-template-columns:1fr}.visual{min-height:390px;order:-1}
+  .cards{grid-template-columns:1fr}.proofline{grid-template-columns:1fr}.row{grid-template-columns:1fr}
+  .row div:last-child{text-align:left}.final{padding:30px 20px}.price .now{font-size:62px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap topbar-inner">Special upgrade option for <b>&nbsp;Pocket-Sized ATM customers</b></div>
+</div>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Reduced-Price Upgrade Option</div>
+      <h1>Get <span class="accent">The Algorithm Update</span> for less.</h1>
+      <p class="sub">
+        Add the advanced Pocket-Sized ATM training focused on social media recommendation systems,
+        content distribution, testing, and optimization.
+      </p>
+
+      <div class="offer">
+        <div class="offer-label">One-Time Downsell Price</div>
+        <div class="price"><div class="now">$67</div><div class="was">$97</div></div>
+        <div class="billing">One-time payment • No recurring subscription</div>
+
+        <a class="cta" href="https://www.digistore24.com/answer/yes?template=light">
+          YES — ADD THE ALGORITHM UPDATE FOR $67
+        </a>
+
+        <div class="decline">
+          <a href="https://www.digistore24.com/answer/no">No thanks — continue without this upgrade</a>
+        </div>
+
+        <div class="proofline">
+          <div class="proof">Digital Access</div>
+          <div class="proof">Pocket-Sized ATM Upgrade</div>
+          <div class="proof">No Recurring Billing</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual">
+      <div class="orb"><div class="algo-icon">↻</div></div>
+      <div class="visual-label">
+        <small>Pocket-Sized ATM Upgrade</small>
+        <strong>The Algorithm Update</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-title">What this upgrade adds</h2>
+    <p class="section-copy">
+      The Algorithm Update builds on the core Pocket-Sized ATM training with additional education
+      about how content may be ranked, recommended, distributed, and tested across social platforms.
+    </p>
+
+    <div class="cards">
+      <div class="card"><div class="card-icon">01</div><h3>Understand Distribution</h3><p>Learn general concepts behind recommendation systems, content reach, visibility, and audience discovery.</p></div>
+      <div class="card"><div class="card-icon">02</div><h3>Test Smarter</h3><p>Use structured testing concepts to compare topics, formats, hooks, publishing choices, and audience response.</p></div>
+      <div class="card"><div class="card-icon">03</div><h3>Optimize Decisions</h3><p>Use performance signals as feedback so you can make more informed content and marketing decisions over time.</p></div>
+    </div>
+
+    <div class="compare">
+      <div class="row"><div>Product</div><div>The Algorithm Update</div></div>
+      <div class="row"><div>Relationship</div><div>Optional Pocket-Sized ATM Upgrade</div></div>
+      <div class="row"><div>Delivery</div><div>Digital Access</div></div>
+      <div class="row"><div>Billing</div><div>$67 One-Time Payment</div></div>
+      <div class="row"><div>Recurring Subscription</div><div>None</div></div>
+    </div>
+
+    <div class="final">
+      <div class="eyebrow"><span class="dot"></span> Upgrade Option</div>
+      <h2>Keep the core system. Add the algorithm training.</h2>
+      <p>Add The Algorithm Update to your Pocket-Sized ATM training for the reduced one-time price shown on this page.</p>
+
+      <a class="cta" href="https://www.digistore24.com/answer/yes?template=light">
+        GET THE ALGORITHM UPDATE FOR $67
+      </a>
+
+      <div class="decline">
+        <a href="https://www.digistore24.com/answer/no">No thanks — continue without this upgrade</a>
+      </div>
+
+      <div class="fine">
+        The Algorithm Update is an educational product. It does not guarantee views, reach, traffic,
+        engagement, audience growth, platform placement, income, profits, or any other specific result.
+        Social media platforms control their own algorithms and may change them at any time. Individual results vary.
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Pocket-Sized ATM. All Rights Reserved.</footer>
+</body>
+</html>
