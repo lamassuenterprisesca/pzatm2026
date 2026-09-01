@@ -20,6 +20,11 @@
       const redirectTo = "../us1";
       const digistoreProductId = 728417;
       const isUpsell = true;
+
+      // URL override for the existing offer timer.
+      // ?showoffer=1 shows the offer immediately.
+      // Without it, the normal 540000ms (9-minute) timer still controls the offer.
+      const showoffer = new URLSearchParams(window.location.search).get("showoffer");
     </script>
     <script src="/js/digistore.js"></script>
 
