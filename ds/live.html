@@ -1,1813 +1,991 @@
-<!-- Hi Advertiser! Create your own funnels using ElasticFunnels.io -->
-<html class="onsite">
+<!doctype html>
+<html lang="en">
 <head>
-            <link rel="stylesheet" type="text/css" href="https://elasticfunnels.b-cdn.net/web/build/assets/main.css"          media="print" onload="this.media='all'; this.onload = null"/>
-
     
-
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-
-    <link rel="icon" href="https://storage.googleapis.com/elasticfunnels/460/favicon.png" type="image/png">
-    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
-    window.bid = 460;
-    window.pgid = 15765;
-    window.merchant_code = 'jvzoo';
+        const script = document.createElement("script");
+        script.src = "/js/main.js?_=" + new Date().getTime();
+        script.defer = true;
+        document.head.appendChild(script);
+    </script>
+    <link href="/css/styles.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocket-Sized ATM</title>
+    <link rel="preconnect" href="https://fast.wistia.com/" crossorigin />
+    <link rel="preconnect" href="https://embed-cloudfront.wistia.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+    <link rel="preload" as="image" href="/images/loading-video.gif" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans&display=swap" as="style" onload="this.rel='stylesheet'" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="apple-touch-icon.png" />
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !(function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+            if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+            t = b.createElement(e); t.async = !0; t.src = v;
+            s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+        fbq("init", "2023533435208488");
+        fbq("track", "PageView");
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2023533435208488&ev=PageView&noscript=1" /></noscript>
+
+    <script>
+        const redirectTo = "start";
+        const isUpsell = false;
+    </script>
+    <script src="/js/digistore.js"></script>
 
-                window.pfnid = null;
-    window.csrf_token = "mHkIVk9l-wNs25CA4sBBtRDAyCbiRSktcKWo";
-        var t = [['app']];
-    var int = [];
-    var dc = 0;
-    window.is_checkout_page = false;
-        </script>
-<script>
-    // Early ef bootstrap. Brand custom head code and tracking scripts run during
-    // HTML parse, before the deferred module bundle defines window.ef. Provide a
-    // queue-backed window.ef.onAddToCart so it is safe to call this early; the
-    // bundle (ef-api.js) drains the queue once it initializes. See ef-api.js.
-    (function () {
-        window.ef = window.ef || {};
-        var ef = window.ef;
-        var queue = ef._atcQueue = ef._atcQueue || [];
-        if (!ef.onAddToCart) {
-            ef.onAddToCart = function (cb) {
-                if (typeof cb !== 'function') return function () {};
-                var entry = { cb: cb, real: null, cancelled: false };
-                queue.push(entry);
-                return function () {
-                    entry.cancelled = true;
-                    if (entry.real) entry.real();
-                };
-            };
-        }
-    })();
-</script>
-
-    
-
-
-    <meta charset="UTF-8">
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<meta content="utf-8" http-equiv="encoding">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <style> </style>
-            <style>
-    .live-order, .hidden, .video-cta-container {
-        display: none;
-    }
-    
-    template-if,
-    template-else-if,
-    template-if-else,
-    template-else,
-    template-foreach,
-    template-vars,
-    template-set,
-    template-partial,
-    partial {
-        display: none ;
-    }
-    [data-ef-cloak] {
-        display: none ;
-    }
-</style>
-    
-        <title>Smart Income System</title>
-     
-    
-<script>
-/**
- * JVZoo Affiliate Link Tracking & Rewriting Script
- *
- * This script performs two main functions:
- * 1. Fires a tracking pixel when the page loads (once per page load)
- * 2. Rewrites all JVZoo buy button links to include affiliate tracking parameters
- *    (aid, tid and coupon are always passed through)
- *
- * Features:
- * - Handles relative (/b/...) and absolute (https://...) links
- * - Preserves existing query parameters and hash fragments
- * - Case-insensitive parameter deduplication (prevents aid/AID duplicates)
- * - Watches for dynamically-added links via MutationObserver
- * - Works on vendor sites (non-JVZoo domains)
- */
-;(function(){
-  // Prevent multiple initialization
-  if (window.__JVZ_B_LINK_INIT__) return;
-  window.__JVZ_B_LINK_INIT__ = true;
-
-  // ===== Browser Compatibility Check =====
-  // Exit early if required APIs are not available (IE10 and below)
-  if (typeof URL === 'undefined' || typeof URLSearchParams === 'undefined' || typeof MutationObserver === 'undefined') {
-    if (typeof console !== 'undefined' && console.warn) {
-      console.warn('[JVZ] Browser not supported (missing URL, URLSearchParams, or MutationObserver)');
-    }
-    return;
-  }
-
-  // ===== Configuration Options =====
-  /**
-   * Fallback product ID to use if no JVZoo links are found on the page.
-   * Leave empty ('') to skip tracking pixel if no product IDs are detected.
-   * Example: '123456'
-   */
-  const FALLBACK_PRODUCT_ID = '';
-
-  /**
-   * When true, ALL page query parameters are added to buy button links.
-   * When false, only parameters in ALWAYS_PASS are added.
-   */
-  const REWRITE_ENABLED = true;
-
-  /**
-   * Parameters that are ALWAYS added to buy button links, even when REWRITE_ENABLED is false.
-   * 'tid' is included so the affiliate's sub-tracking ID carries through to the JVZoo
-   * checkout and is attributed to the sale, not just the click pixel.
-   * These values are case-insensitive (matched as lowercase).
-   */
-  const ALWAYS_PASS = new Set(['aid','tid','coupon']);
-
-  /**
-   * Debounce delay (ms) for mutation observer to prevent excessive processing.
-   * Higher values reduce CPU usage but increase delay before new links are processed.
-   */
-  const DEBOUNCE_MS = 200;
-
-  /**
-   * Safety timeout (ms) for cleaning up tracking iframe if onload/onerror don't fire.
-   */
-  const IFRAME_CLEANUP_MS = 10000;
-
-  /**
-   * Whitelist of allowed JVZoo hostnames. Only links to these domains are processed.
-   */
-  const ALLOWED_HOSTNAMES = Object.freeze([
-    'www.jvzoo.com', 'i.jvzoo.com', 'jvzoo.com'
-  ]);
-
-  /**
-   * Regex pattern for validating parameter keys (security).
-   * Allows: 1-64 characters, alphanumeric + underscore + hyphen, cannot start with hyphen.
-   */
-  const PARAM_KEY_PATTERN = /^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$/;
-
-  // ===== Global State Management =====
-  /**
-   * Global state object for tracking script execution and preventing race conditions.
-   * Stored on window object to persist across function calls and allow external debugging.
-   */
-  window.__JVZ__ = window.__JVZ__ || {
-    updating: false,         // Reentry guard: prevents updateBuyLinks from calling itself
-    pageFired: false,        // Ensures tracking pixel fires only once per page load
-    pendingUpdateCount: 0    // Count of queued mutations (prevents starvation during rapid DOM changes)
-  };
-
-  // ===== Debug Logging =====
-  /**
-   * Set DEBUG = true to enable console logging, or set window.__JVZ_DEBUG__ = true in browser console.
-   */
-  const DEBUG = false;
-
-  /**
-   * Logs debug messages only when debugging is enabled.
-   * Used for tracking failures and skipped operations.
-   */
-  const dbgFail = (...args) => {
-    if (DEBUG || window.__JVZ_DEBUG__) {
-      if (typeof console !== 'undefined') {
-        (console.debug || console.log).apply(console, ['[JVZ]', ...args]);
-      }
-    }
-  };
-
-  // ===== Parse and Normalize Current Page Parameters =====
-  /**
-   * Extract query parameters from the current page URL and normalize affiliate params.
-   *
-   * IMPORTANT: JVZoo's affiliate system treats aid/tid/coupon as case-insensitive.
-   * We normalize these to lowercase to prevent duplicate parameters (e.g., AID + aid).
-   * If JVZoo changes this behavior, tracking may break.
-   *
-   * Examples:
-   *   Input:  ?AID=123&TID=456&foo=bar
-   *   Output: ?aid=123&tid=456&foo=bar
-   */
-  const qp = new URLSearchParams(window.location.search);
-  const pageParams = new URLSearchParams();
-
-  for (const [key, value] of qp.entries()) {
-    const kLower = key.toLowerCase();
-    // Normalize JVZoo-specific parameters to lowercase
-    if (kLower === 'aid' || kLower === 'tid' || kLower === 'coupon') {
-      pageParams.set(kLower, value);
-    } else {
-      // Preserve original case for all other parameters
-      pageParams.set(key, value);
-    }
-  }
-
-  // Extract affiliate ID and tracking ID for later use
-  const aidRaw = pageParams.get('aid');
-  const tidRaw = pageParams.get('tid');
-
-  // ===== URL Parser: Validates and Extracts JVZoo Link Information =====
-  /**
-   * Parses a URL to determine if it's a valid JVZoo link and extracts IDs.
-   *
-   * Supported URL formats:
-   *   - https://www.jvzoo.com/b/182/46/99 (full URL with /b/)
-   *   - https://i.jvzoo.com/182/46/99 (pixel form without /b/)
-   *   - //www.jvzoo.com/b/182/46/99 (protocol-relative)
-   *   - /b/182/46/99 (relative on vendor sites - normalized to jvzoo.com)
-   *   - /B/182/46/99 (uppercase B also supported)
-   *   - https://vendor.com/b/182/46/99 (absolute on vendor sites - normalized to jvzoo.com)
-   *
-   * @param {string} url - The URL to parse
-   * @returns {Object|null} - Object with {url, funnelId, productId, buttonId} or null if invalid
-   */
-  function parseJVZUrl(url) {
-    try {
-      // Security: Allow protocol-relative JVZoo links (//www.jvzoo.com/...) but reject others
-      const trimmedUrl = url && url.trim();
-      if (trimmedUrl && /^\/\/+/.test(trimmedUrl)) {
-        const testUrl = new URL('https:' + trimmedUrl);
-        const testHostname = testUrl.hostname.toLowerCase();
-        if (!ALLOWED_HOSTNAMES.includes(testHostname)) {
-          dbgFail('parseJVZUrl: protocol-relative URL not allowed', url);
-          return null;
-        }
-        // Valid JVZoo protocol-relative URL - continue processing
-      }
-
-      // Parse URL (relative URLs resolved against current page)
-      const u = new URL(url, window.location.href);
-
-      // Check if this is a /b/ or /B/ path
-      const hostname = u.hostname.toLowerCase();
-      const isBPath = /^\/[bB]\//.test(u.pathname);
-
-      // Handle vendor site links: if pathname starts with /b/ but domain isn't JVZoo, normalize it
-      if (!ALLOWED_HOSTNAMES.includes(hostname)) {
-        if (isBPath) {
-          // Rewrite vendor /b/ links to point to jvzoo.com, preserving query & hash
-          // Example: https://vendor.com/b/1/2/3?foo=bar#anchor → https://www.jvzoo.com/b/1/2/3?foo=bar#anchor
-          const relativeUrl = new URL('https://www.jvzoo.com' + u.pathname + u.search + u.hash);
-          const relativeMatch = relativeUrl.pathname.match(/^\/(?:[bB]\/)?(\d+)\/(\d+)(?:\/(\d+))?(?:[\/? #]|$)/);
-          if (relativeMatch) {
-            return {
-              url: relativeUrl,
-              funnelId: relativeMatch[1],
-              productId: relativeMatch[2],
-              buttonId: relativeMatch[3] || null
-            };
-          }
-        }
-
-        // Security: Reject untrusted subdomains (e.g., evil.jvzoo.com)
-        if (hostname.endsWith('.jvzoo.com')) {
-          dbgFail('parseJVZUrl: untrusted subdomain', hostname);
-        }
-        return null;
-      }
-
-      // Parse JVZoo URL pathname to extract IDs
-      // Pattern matches: /b/182/46/99 or /182/46/99 or /182/46 (buttonId optional)
-      const m = u.pathname.match(/^\/(?:[bB]\/)?(\d+)\/(\d+)(?:\/(\d+))?(?:[\/? #]|$)/);
-      if (!m) return null;
-
-      return {
-        url: u,
-        funnelId: m[1],
-        productId: m[2],
-        buttonId: m[3] || null  // null for tracking pixels
-      };
-    } catch (e) {
-      dbgFail('parseJVZUrl: error parsing', url, e);
-      return null;
-    }
-  }
-
-  // Scan for first match in anchors, areas, images, iframes (optimized to target JVZoo domains)
-  function findFirstIdsOnPage() {
-    const nodes = document.querySelectorAll('a[href*="jvzoo.com"], a[href^="/b/"], a[href^="/B/"], area[href*="jvzoo.com"], area[href^="/b/"], area[href^="/B/"], img[src*="jvzoo.com"], iframe[src*="jvzoo.com"]');
-    for (const el of nodes) {
-      const url = el.getAttribute('href') || el.getAttribute('src');
-      if (!url) continue;
-      const info = parseJVZUrl(url);
-      if (info) return { funnelId: info.funnelId, productId: info.productId };
-    }
-    return null;
-  }
-
-  // ===== 3) Fire the click once per page =====
-  function fireClickOnce() {
-    // Page-level guard: only fire once per page load
-    if (window.__JVZ__.pageFired) {
-      dbgFail('click: skip -> already fired this page load');
-      return;
-    }
-
-    // Explicitly check for empty string (e.g., ?aid= with no value)
-    if (!aidRaw || aidRaw.trim() === '') {
-      dbgFail('click: skip -> missing or empty aid');
-      return;
-    }
-
-    let ids = findFirstIdsOnPage();
-    let productId = ids && ids.productId;
-    if (!productId) {
-      if (FALLBACK_PRODUCT_ID && /^\d+$/.test(String(FALLBACK_PRODUCT_ID))) {
-        productId = String(FALLBACK_PRODUCT_ID);
-      } else {
-        dbgFail('click: skip -> no jvzoo id found in DOM and no valid FALLBACK_PRODUCT_ID');
-        return;
-      }
-    }
-
-    try {
-      const clickUrl = new URL(`https://www.jvzoo.com/c/${encodeURIComponent(aidRaw)}/${productId}`);
-      pageParams.forEach((v, k) => clickUrl.searchParams.set(k, v));
-
-      const iframe = document.createElement('iframe');
-      iframe.src = clickUrl.toString();
-      iframe.style.cssText = 'width:0;height:0;border:0;position:absolute;left:-9999px;top:-9999px;';
-
-      // Clean up iframe immediately on load/error, with safety timeout
-      let cleaned = false;
-      const cleanup = () => {
-        if (cleaned) return;
-        cleaned = true;
-        try { iframe.remove(); } catch(_) {}
-      };
-
-      iframe.onload = cleanup;
-      iframe.onerror = cleanup;
-      setTimeout(cleanup, IFRAME_CLEANUP_MS);
-
-      (document.body || document.documentElement).appendChild(iframe);
-
-      // Mark as fired for this page load
-      window.__JVZ__.pageFired = true;
-    } catch (e) {
-      dbgFail('click: failed to create tracking iframe', e);
-    }
-  }
-
-  // ===== 4) Build URLSearchParams with case-insensitive keys =====
-  // More efficient: build params from scratch instead of modifying existing
-  function buildParamsWithCaseInsensitive(originalParams, overlayParams, shouldOverlay) {
-    const result = new URLSearchParams();
-    const seenKeysLower = new Map(); // track lowercase keys to prevent duplicates
-
-    // Helper to add param with case-insensitive deduplication
-    const addParam = (key, value) => {
-      // Validate parameter key for security (1-64 chars, can't start with hyphen)
-      if (!PARAM_KEY_PATTERN.test(key)) {
-        dbgFail('addParam: invalid parameter key', key);
-        return;
-      }
-
-      const keyLower = key.toLowerCase();
-      // If we've seen this key (case-insensitive), delete using the ORIGINAL case
-      const existingKey = seenKeysLower.get(keyLower);
-      if (existingKey !== undefined) {
-        result.delete(existingKey);  // URLSearchParams.delete() is case-sensitive!
-      }
-      result.set(key, value);
-      seenKeysLower.set(keyLower, key);
-    };
-
-    // Add original params first
-    originalParams.forEach((v, k) => addParam(k, v));
-
-    // Overlay page params based on rules
-    overlayParams.forEach((v, k) => {
-      const kLower = k.toLowerCase();
-
-      if (ALWAYS_PASS.has(kLower) || shouldOverlay) {
-        addParam(k, v);
-      }
-    });
-
-    return result;
-  }
-
-  // ===== 5) Rewrite /b/ anchors (only <a>, not images/iframes) =====
-  function updateBuyLinks() {
-    // Reentry guard: prevent triggering ourselves
-    if (window.__JVZ__.updating) return;
-    window.__JVZ__.updating = true;
-
-    try {
-      // Optimized selector: target JVZoo domain + relative /b/ or /B/ links
-      const selector = [
-        'a[href*="jvzoo.com"]:not([data-jvz-processed])',
-        'a[href^="/b/"]:not([data-jvz-processed])',
-        'a[href^="/B/"]:not([data-jvz-processed])'
-      ].join(', ');
-
-      document.querySelectorAll(selector).forEach(a => {
-        const href = a.getAttribute('href');
-        if (!href) return;
-
-        const info = parseJVZUrl(href);
-        if (!info) return;
-
-        try {
-          // Start from canonical origin+pathname (preserves funnel/product/button ids)
-          const newUrl = new URL(info.url.origin + info.url.pathname);
-
-          // Build params efficiently with case-insensitive deduplication
-          const newParams = buildParamsWithCaseInsensitive(
-            info.url.searchParams,  // original link params
-            pageParams,             // page params to overlay
-            REWRITE_ENABLED         // whether to overlay all params
-          );
-
-          newUrl.search = newParams.toString();
-
-          // Preserve hash fragment if present (for anchor links and SPAs)
-          if (info.url.hash) {
-            newUrl.hash = info.url.hash;
-          }
-
-          const newHref = newUrl.toString();
-
-          // Only update if href actually changed (avoid unnecessary mutations)
-          if (href !== newHref) {
-            a.setAttribute('href', newHref);
-          }
-
-          // Store the processed href value (not just boolean) to detect future changes
-          a.dataset.jvzProcessed = 'true';
-          a.dataset.jvzLastHref = newHref;
-        } catch (e) {
-          dbgFail('updateBuyLinks: error processing link', href, e);
-        }
-      });
-    } finally {
-      window.__JVZ__.updating = false;
-
-      // Process any mutations that arrived while we were updating
-      // Using counter prevents starvation if mutations arrive during setTimeout window
-      if (window.__JVZ__.pendingUpdateCount > 0) {
-        window.__JVZ__.pendingUpdateCount = 0;
-        // Schedule on next tick to avoid immediate recursion
-        setTimeout(() => updateBuyLinks(), 0);
-      }
-    }
-  }
-
-  // ===== 6) Debounce helper =====
-  function debounce(fn, delay) {
-    let timer = null;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => fn(...args), delay);
-    };
-  }
-
-  // ===== 7) Init & observe late-injected links =====
-  function init(){
-    updateBuyLinks();
-    fireClickOnce();
-
-    const handleMutations = debounce(() => {
-      updateBuyLinks();
-    }, DEBOUNCE_MS);
-
-    const observer = new MutationObserver(records => {
-      // If we're currently updating, increment counter for later processing
-      if (window.__JVZ__.updating) {
-        window.__JVZ__.pendingUpdateCount++;
-        return;
-      }
-
-      let shouldUpdate = false;
-      for (const rec of records) {
-        if (rec.type === 'attributes' && rec.attributeName === 'href' && rec.target instanceof Element) {
-          const wasProcessed = rec.target.dataset.jvzProcessed === 'true';
-          const href = rec.target.getAttribute('href') || '';
-
-          if (wasProcessed) {
-            const lastHref = rec.target.dataset.jvzLastHref || '';  // Fallback for undefined
-
-            // If href changed since we processed it, clear flags and trigger update
-            // Let updateBuyLinks determine if it's a valid JVZoo link
-            if (href !== lastHref) {
-              rec.target.removeAttribute('data-jvz-processed');
-              rec.target.removeAttribute('data-jvz-last-href');
-              shouldUpdate = true;
-              break;
-            }
-          } else {
-            // Unprocessed anchor changed to a JVZoo link - trigger update
-            if (parseJVZUrl(href)) {
-              shouldUpdate = true;
-              break;
-            }
-          }
-        }
-        for (const node of rec.addedNodes) {
-          if (!(node instanceof Element)) continue;
-          // Use matchesFn for better browser compatibility
-          const matchesFn = node.matches || node.msMatchesSelector || node.webkitMatchesSelector;
-          const querySelectorFn = node.querySelector;
-
-          // Combined selector for efficiency (supports jvzoo.com, and relative /b/ or /B/)
-          const linkSelector = 'a[href*="jvzoo.com"], a[href^="/b/"], a[href^="/B/"]';
-
-          if (
-            (matchesFn && matchesFn.call(node, linkSelector)) ||
-            (querySelectorFn && querySelectorFn.call(node, linkSelector))
-          ) { shouldUpdate = true; break; }
-        }
-        if (shouldUpdate) break;
-      }
-      if (shouldUpdate) {
-        handleMutations();
-      }
-    });
-
-    // Attach observer to body (retry if body doesn't exist yet)
-    const attachObserver = (retries = 0) => {
-      if (!document.body) {
-        // Body still doesn't exist, wait and retry with limit
-        if (retries < 50) {  // Max 50 retries = ~500ms
-          setTimeout(() => attachObserver(retries + 1), 10);
-        } else {
-          dbgFail('attachObserver: gave up waiting for document.body after 50 retries');
-        }
-        return;
-      }
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['href']
-      });
-    };
-
-    attachObserver();
-  }
-
-  // ===== 8) Optional: Reset pageFired on SPA navigation =====
-  // Uncomment if you want to fire clicks on each route change (not just page load)
-  // window.addEventListener('popstate', () => {
-  //   window.__JVZ__.pageFired = false;
-  //   fireClickOnce();
-  // });
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  } else {
-    init();
-  }
-})();
-</script>
-
-        </head>
-<body id="wrapper" data-brand-id="460">
-
-        <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="preconnect" href="https://cdn.converteai.net">
-<link rel="preconnect" href="https://scripts.converteai.net">
-<link rel="preconnect" href="https://images.converteai.net">
-<link rel="preconnect" href="https://api.vturb.com.br">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-* { margin: 0; padding: 0; box-sizing: border-box }
-
-body {
-  background: #f0f2f5;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-.fb-wrap { max-width: 500px; margin: 0 auto; background: #fff; min-height: 100vh }
-
-@media (min-width: 501px) {
-  .fb-wrap { border-radius: 8px; min-height: auto; margin: 16px auto; box-shadow: 0 1px 2px rgba(0, 0, 0, .1) }
-}
-
-@media (min-width: 768px) {
-  .fb-wrap { max-width: 1000px }
-}
-
-.fb-hdr { display: flex; align-items: center; padding: 12px 16px 8px; gap: 10px }
-
-.fb-hdr-avatar {
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.fb-hdr-avatar img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.fb-hdr-info { flex: 1 }
-
-.fb-hdr-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #050505;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.fb-verified {
-  display: inline-flex;
-  width: 15px;
-  height: 15px;
-  background: #1877f2;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.fb-verified svg { width: 10px; height: 10px; fill: #fff }
-
-.fb-hdr-meta {
-  font-size: 13px;
-  color: #65676b;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 1px;
-  flex-wrap: wrap;
-}
-
-.fb-hdr-dots {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #65676b;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-
-.fb-hdr-dots:hover { background: #f0f2f5 }
-
-.fb-live-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #e41e3f;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 3px;
-  letter-spacing: .5px;
-}
-
-.fb-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.2s infinite }
-
-@keyframes blink {
-  0%, 100% { opacity: 1 }
-  50% { opacity: .3 }
-}
-
-.fb-desc { padding: 0 16px 8px; font-size: 15px; line-height: 1.4; color: #050505 }
-
-.fb-player { position: relative; background: #000; overflow: hidden; max-width: 400px; margin: 0 auto }
-
-.fb-player wistia-player { display: block; width: 100%; max-width: 400px; margin: 0 auto }
-
-.fb-player-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 10px 12px;
-  z-index: 99999;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, transparent 100%);
-}
-
-.fb-player-left { display: flex; align-items: center; gap: 6px }
-
-.fb-player-live-badge {
-  background: rgba(228, 30, 63, .95);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.fb-player-live-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.2s infinite }
-
-.fb-player-viewers {
-  background: rgba(0, 0, 0, .55);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 3px 8px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.fb-player-viewers svg { width: 14px; height: 14px; fill: #fff }
-
-.fb-float-wrap {
-  position: absolute;
-  bottom: 30px;
-  right: 8px;
-  width: 50px;
-  height: 200px;
-  pointer-events: none;
-  z-index: 99998;
-  overflow: hidden;
-}
-
-.fb-float-emoji { position: absolute; bottom: 0; font-size: 26px; animation: floatUp 3s ease-out forwards; opacity: 0 }
-
-@keyframes floatUp {
-  0% { opacity: 0; transform: translateY(0) scale(.5) }
-  10% { opacity: 1; transform: translateY(-20px) scale(1) }
-  90% { opacity: .6; transform: translateY(-170px) scale(.9) }
-  100% { opacity: 0; transform: translateY(-200px) scale(.7) }
-}
-
-.fb-react-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  font-size: 13px;
-  color: #65676b;
-}
-
-.fb-react-left { display: flex; align-items: center }
-
-.fb-react-emoji {
-  display: inline-flex;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  border: 2px solid #fff;
-  margin-right: -4px;
-  position: relative;
-}
-
-.fb-react-emoji:nth-child(1) { z-index: 3 }
-.fb-react-emoji:nth-child(2) { z-index: 2 }
-.fb-react-emoji:nth-child(3) { z-index: 1 }
-.fb-react-emoji.like { background: #1877f2 }
-.fb-react-emoji.love { background: #e41e3f }
-.fb-react-emoji.wow { background: #f7b928 }
-
-.fb-react-count { margin-left: 8px; color: #65676b }
-
-.fb-actions {
-  display: flex;
-  border-top: 1px solid #e4e6eb;
-  border-bottom: 1px solid #e4e6eb;
-  margin: 0 16px;
-  padding: 2px 0;
-}
-
-.fb-act-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 7px;
-  border: none;
-  background: none;
-  color: #65676b;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 4px;
-  font-family: inherit;
-  position: relative;
-  transition: color .2s ease;
-}
-
-.fb-act-btn:hover { background: #f0f2f5 }
-.fb-act-btn svg { width: 18px; height: 18px; fill: #65676b; transition: fill .2s ease }
-
-/* --- like effect --- */
-
-.fb-act-btn.is-liked { color: #1877f2 }
-.fb-act-btn.is-liked svg { fill: #1877f2 }
-.fb-act-btn.is-pop svg { animation: likePop .48s ease }
-
-.fb-like-burst {
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% - 4px);
-  width: 22px;
-  height: 22px;
-  margin-left: -11px;
-  color: #1877f2;
-  pointer-events: none;
-  z-index: 3;
-  animation: likeBurst .6s ease forwards;
-}
-
-.fb-like-burst svg { width: 100%; height: 100%; display: block; fill: currentColor }
-
-@keyframes likePop {
-  0% { transform: scale(1) }
-  20% { transform: scale(1.4) }
-  40% { transform: scale(.88) }
-  60% { transform: scale(1.12) }
-  100% { transform: scale(1) }
-}
-
-@keyframes likeBurst {
-  0% { opacity: 0; transform: translateY(6px) scale(.4) }
-  25% { opacity: 1; transform: translateY(-4px) scale(1.15) }
-  100% { opacity: 0; transform: translateY(-26px) scale(1) }
-}
-
-.fb-comments-section { padding: 8px 16px 4px }
-
-.fb-comment-sort {
-  font-size: 14px;
-  font-weight: 600;
-  color: #050505;
-  padding: 4px 0 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.fb-comment-sort span { color: #65676b; font-size: 12px; font-weight: 400 }
-
-.fb-comment { display: flex; gap: 8px; margin-bottom: 10px; animation: slideIn .35s ease }
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(-8px) }
-  to { opacity: 1; transform: translateY(0) }
-}
-
-.fb-c-avatar {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  overflow: hidden;
-}
-
-.fb-c-avatar img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.fb-c-body { flex: 1; min-width: 0 }
-
-.fb-c-bubble { background: #f0f2f5; border-radius: 18px; padding: 8px 12px; display: inline-block; max-width: 100% }
-
-.fb-c-name { font-size: 13px; font-weight: 600; color: #050505 }
-.fb-c-city { font-size: 11px; color: #65676b; font-weight: 400 }
-.fb-c-text { font-size: 14px; color: #050505; line-height: 1.35; margin-top: 2px; word-wrap: break-word }
-
-.fb-c-meta { font-size: 12px; color: #65676b; padding: 2px 0 0 12px; display: flex; gap: 12px }
-.fb-c-meta span { cursor: pointer }
-.fb-c-meta span:hover { text-decoration: underline }
-
-.fb-c-like { position: relative; transition: color .2s ease }
-.fb-c-like.is-liked { color: #1877f2; font-weight: 600 }
-.fb-c-like.is-pop { animation: likePop .48s ease; display: inline-block }
-
-.fb-comment--me .fb-c-name { color: #1877f2 }
-
-.fb-typing { display: none; gap: 8px; align-items: center; margin-bottom: 10px }
-
-.fb-typing-dots { display: flex; gap: 3px; background: #f0f2f5; border-radius: 18px; padding: 12px 16px }
-
-.fb-typing-dot { width: 6px; height: 6px; border-radius: 50%; background: #65676b; animation: bounce .6s infinite }
-.fb-typing-dot:nth-child(2) { animation-delay: .15s }
-.fb-typing-dot:nth-child(3) { animation-delay: .3s }
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); opacity: .4 }
-  50% { transform: translateY(-4px); opacity: 1 }
-}
-
-/* --- compose box (moved to the top of the thread) --- */
-
-.fb-ci { display: flex; align-items: center; gap: 8px; padding: 0 0 12px; background: #fff }
-
-.fb-ci-avatar {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  border-radius: 50%;
-  background: #e4e6eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #65676b;
-  font-size: 13px;
-}
-
-.fb-ci-form {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid #e4e6eb;
-  border-radius: 20px;
-  background: #f0f2f5;
-  padding: 4px 4px 4px 12px;
-  transition: box-shadow .2s ease, border-color .2s ease, background .2s ease;
-}
-
-.fb-ci-form:focus-within { border-color: #1877f2; background: #fff }
-.fb-ci--focus .fb-ci-form { box-shadow: 0 0 0 2px rgba(24, 119, 242, .25) }
-
-.fb-ci-field {
-  flex: 1;
-  min-width: 0;
-  height: 28px;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  font-size: 14px;
-  color: #050505;
-  outline: none;
-  font-family: inherit;
-}
-
-.fb-ci-field::placeholder { color: #65676b }
-
-.fb-ci-submit {
-  display: none;
-  border: 0;
-  border-radius: 16px;
-  background: #1877f2;
-  color: #fff;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 7px 14px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.fb-ci-form.has-text .fb-ci-submit { display: inline-flex }
-
-.cta-button {
-  display: inline-block;
-  background: #22c55e;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  padding: 14px 32px;
-  border-radius: 8px;
-  text-decoration: none;
-  animation: pulsing 1.5s infinite;
-}
-
-/* --- post-video offer card (popup style, inline) --- */
-
-.cta-offer {
-  max-width: 440px;
-  margin: 0 auto;
-  background: #fff;
-  border: 6px solid rgb(233, 61, 61);
-  border-radius: 20px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.cta-offer-head {
-  background: rgb(233, 61, 61);
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 17px;
-  font-weight: 900;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-  padding: 12px 14px;
-}
-
-.cta-offer-body { padding: 18px 16px 20px }
-
-.cta-offer .cta-kicker { font-size: 15px; font-weight: 700; color: #65676b; margin-bottom: 10px }
-
-.cta-offer .cta-price {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 38px;
-  font-weight: 900;
-  color: #050505;
-  line-height: 1.1;
-}
-
-.cta-offer .cta-price del { color: #90949c; font-weight: 700; font-size: 26px }
-
-.cta-offer .cta-save { font-size: 15px; font-weight: 700; color: #1b7a3e; margin: 4px 0 12px }
-
-.cta-offer .cta-pitch { font-size: 15px; font-weight: 400; color: #303234; line-height: 1.5; margin-bottom: 16px }
-
-.cta-offer a.cta-button {
-  display: block;
-  white-space: normal;
-  background: #d32f2f;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 1.25;
-  padding: 16px 18px;
-  border-radius: 12px;
-  text-decoration: none;
-  animation: pulsing 1.5s infinite;
-}
-
-.cta-offer .cta-button-sub {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .3px;
-  text-transform: uppercase;
-  opacity: .9;
-  margin-top: 5px;
-}
-
-.cta-offer .cta-trust { font-size: 12.5px; font-weight: 400; color: #65676b; margin: 12px 0 0 }
-
-.pbs-cta { display: none; text-align: center; padding: 18px 16px; background: #fff; margin-top: 10px }
-
-.pbs-cta a {
-  background: #d32f2f;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 800;
-  padding: 18px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-  line-height: 1.3;
-  animation: pulsing 1.5s infinite;
-}
-
-@keyframes pulsing {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, .7) }
-  70% { transform: scale(1.034); box-shadow: 0 0 0 10px transparent }
-  to { transform: scale(1); box-shadow: 0 0 0 0 transparent }
-}
-
-.overVideo { position: absolute; top: 38px; z-index: 100; background-color: transparent; margin-top: 0; width: 100% }
-.overVideo a { animation: none; border: solid 2px #ffffff7a; box-shadow: 0 0 10px 1px #ffffff8a }
-
-footer {
-  background-color: #f0f0f0;
-  padding: 250px 20px;
-  font-size: 15px;
-  color: #333;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-}
-
-footer p { margin-bottom: 20px; line-height: 2em }
-footer a { color: #188bf6 }
-
-@media (max-width: 768px) {
-  .pbs-cta a { white-space: nowrap; font-size: 18px }
-}
-
-</style>
-
-<div class="fb-wrap">
-  <div class="fb-hdr">
-    <div class="fb-hdr-avatar" style="background:#1877f2">
-      <img src="https://elasticfunnels-cdn.b-cdn.net/460/assets/report/jason-cooper.jpg" alt="Jason Cooper" onerror="this.remove()">JC
-    </div>
-    <div class="fb-hdr-info">
-      <div class="fb-hdr-name">
-        Jason Cooper
-        <span class="fb-verified"><svg viewBox="0 0 12 12">
-            <path d="M10.17 2.29L4.5 7.96 1.83 5.29a1 1 0 00-1.41 1.42l3.38 3.38a1 1 0 001.41 0l6.36-6.36a1 1 0 00-1.4-1.44z" />
-          </svg></span>
-      </div>
-      <div class="fb-hdr-meta">
-        <span id="timeAgo">23m</span> &middot;
-        <span class="fb-live-tag"><span class="fb-live-dot"></span> Live</span>
-        &middot; &#127758;
-      </div>
-    </div>
-    <div class="fb-hdr-dots">&ctdot;</div>
-  </div>
-
-  <div class="fb-desc">
-    I can't stop shaking. This simple wifi-trick is putting $300+ per day into ordinary people's bank
-    accounts &mdash; with ZERO tech skills required.<br><br>
-    &#128308; No computer needed. No experience needed. Just your phone and 30 seconds.<br><br>
-    Press play before they take it down &#128071;
-  </div>
-
-  <div class="fb-player" id="playerWrap">
-    <div class="fb-player-overlay" id="playerOverlay">
-      <div class="fb-player-left">
-        <div class="fb-player-live-badge"><span class="dot"></span> LIVE</div>
-        <div class="fb-player-viewers">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-          </svg>
-          <span id="viewerCount">3,847</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="fb-float-wrap" id="floatReactions"></div>
-
-    <div class="pbs-cta overVideo">
-      <a class="pbsCtaBtn" href="https://www.jvzoo.com/b/117845/448013/99">Get Instant Access Now! &gt;&gt;</a>
-    </div>
-
-    <script src="https://fast.wistia.com/player.js" async></script>
-    <script src="https://fast.wistia.com/embed/c0h41vpzk5.js" async type="module"></script>
     <style>
-      wistia-player[media-id='c0h41vpzk5']:not(:defined) {
-        background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/c0h41vpzk5/swatch');
-        display: block;
-        filter: blur(5px);
-        padding-top: 177.5%;
-      }
-      .fb-player wistia-player {
-        display: block;
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
-      }
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* ── Facebook Post Wrapper ── */
+        .fb-post-wrapper {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 12px;
+        }
+
+        .fb-post-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.15);
+            overflow: hidden;
+        }
+
+        /* ── Post Header ── */
+        .fb-post-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px 8px;
+        }
+
+        .fb-page-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fb-page-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1877f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .fb-page-name {
+            font-weight: 700;
+            font-size: 15px;
+            color: #050505;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .fb-verified {
+            color: #1877f2;
+            font-size: 14px;
+        }
+
+        .fb-post-meta {
+            font-size: 13px;
+            color: #65676b;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 2px;
+        }
+
+        .fb-live-badge {
+            background: #e41e3f;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            letter-spacing: 0.5px;
+        }
+
+        .fb-globe { font-size: 12px; }
+
+        /* ── Post Text ── */
+        .fb-post-text {
+            padding: 0 16px 12px;
+            font-size: 15px;
+            color: #050505;
+            line-height: 1.5;
+        }
+
+        /* ── Video Container ── */
+        .fb-video-container {
+            position: relative;
+            background: #000;
+        }
+
+        .fb-live-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .fb-live-dot {
+            background: #e41e3f;
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 3px;
+            letter-spacing: 1px;
+        }
+
+        .fb-viewer-count {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 13px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Floating reactions */
+        .fb-reactions-container {
+            position: absolute;
+            right: 12px;
+            bottom: 60px;
+            top: 60px;
+            width: 40px;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .fb-reaction-emoji {
+            position: absolute;
+            font-size: 24px;
+            right: 0;
+            opacity: 0;
+            animation: floatUp 3s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0%   { bottom: 0; opacity: 1; transform: translateX(0); }
+            25%  { transform: translateX(-8px); }
+            50%  { transform: translateX(4px); }
+            75%  { transform: translateX(-4px); opacity: 0.8; }
+            100% { bottom: 100%; opacity: 0; transform: translateX(0); }
+        }
+
+        /* Wistia video */
+        .wistia-wrapper {
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        /* Mobile video - no fixed height, use aspect ratio */
+        .fb-mobile-video {
+            width: 100%;
+        }
+
+        .fb-mobile-video-inner {
+            width: 100%;
+            aspect-ratio: 16/9;
+            transition: all 0.3s ease;
+        }
+
+        .fb-mobile-video-inner.expanded {
+            aspect-ratio: unset;
+            height: 75vw;
+        }
+
+        /* ── "Get Access Now" Button-Overlay auf dem Video ── */
+        .secure-button-overlay {
+            display: none;
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            z-index: 20;
+            background: #22c55e;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 18px;
+            border-radius: 24px;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+            cursor: pointer;
+            border: none;
+            animation: secureButtonPulse 2s infinite;
+        }
+
+        .secure-button-overlay:hover {
+            background: #1ea34f;
+        }
+
+        @keyframes secureButtonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+
+        /* ── Kauf-Popup Benachrichtigungen ── */
+        .purchase-popup {
+            position: fixed;
+            left: 12px;
+            bottom: -100px;
+            max-width: 320px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #050505;
+            z-index: 3000;
+            opacity: 0;
+            transition: bottom 0.45s ease, opacity 0.45s ease;
+        }
+
+        .purchase-popup.show {
+            bottom: 16px;
+            opacity: 1;
+        }
+
+        .purchase-popup-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .purchase-popup-text strong {
+            color: #050505;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .purchase-popup {
+                left: 10px;
+                right: 10px;
+                max-width: none;
+            }
+        }
+
+        /* ── Reactions Bar ── */
+        .fb-reactions-bar {
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e4e6eb;
+        }
+
+        .fb-reaction-icons {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            color: #65676b;
+        }
+
+        .fb-reaction-icons span { font-size: 18px; }
+
+        .fb-comment-share-count {
+            font-size: 13px;
+            color: #65676b;
+        }
+
+        /* ── Action Buttons ── */
+        .fb-action-buttons {
+            display: flex;
+            border-bottom: 1px solid #e4e6eb;
+        }
+
+        .fb-action-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #65676b;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .fb-action-btn:hover { background: #f0f2f5; }
+
+        /* ── Comments Section ── */
+        .fb-comments-section {
+            padding: 8px 16px 0;
+        }
+
+        .fb-comments-sort {
+            font-size: 14px;
+            font-weight: 700;
+            color: #050505;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .fb-comment-item {
+            display: flex;
+            gap: 8px;
+            padding: 6px 0;
+        }
+
+        .fb-comment-avatar-initials {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .fb-comment-content { flex: 1; }
+
+        .fb-comment-bubble-live {
+            background: #f0f2f5;
+            border-radius: 18px;
+            padding: 8px 12px;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .fb-comment-name {
+            font-weight: 700;
+            font-size: 13px;
+            color: #050505;
+        }
+
+        .fb-comment-text {
+            font-size: 14px;
+            color: #050505;
+            line-height: 1.4;
+            display: block;
+        }
+
+        .fb-comment-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 2px;
+            padding-left: 4px;
+        }
+
+        .fb-comment-action {
+            font-size: 12px;
+            font-weight: 700;
+            color: #65676b;
+            cursor: pointer;
+        }
+
+        .fb-comment-time {
+            font-size: 12px;
+            color: #65676b;
+            font-weight: 400;
+        }
+
+        /* New comment appearing animation */
+        .fb-comment-item.new-comment {
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Write comment box ── */
+        .fb-write-comment {
+            display: flex;
+            gap: 8px;
+            padding: 10px 16px;
+            align-items: center;
+            border-top: 1px solid #e4e6eb;
+            margin-top: 4px;
+        }
+
+        .fb-write-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #bcc0c4;
+            flex-shrink: 0;
+        }
+
+        .fb-write-input {
+            flex: 1;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 14px;
+            color: #65676b;
+        }
+
+        /* ── Angebot Section ── */
+        .offer-section {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 12px;
+        }
+
+        /* ── CTA Button ── */
+        .fb-cta-button {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 12px 16px;
+            padding: 12px;
+            background: #1877f2;
+            color: white;
+            text-align: center;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .fb-cta-button:hover { background: #166fe5; }
+
+        /* Footer */
+        .fb-footer {
+            text-align: center;
+            padding: 20px 16px;
+            font-size: 11px;
+            color: #65676b;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .fb-footer a { color: #65676b; }
     </style>
-    <wistia-player media-id="c0h41vpzk5" aspect="0.5633802816901409"></wistia-player>
-  </div>
+</head>
+<body>
 
-  <div class="pbs-cta">
-    <div class="cta-offer">
-      <div class="cta-offer-head">Only A Few Spots Left!</div>
-      <div class="cta-offer-body">
-        <p class="cta-kicker">Ready to start? Claim your access below:</p>
-        <div class="cta-price"><del>$497.00</del> $37</div>
-        <p class="cta-save">(Save $460.00 Today)</p>
-        <p class="cta-pitch">Get the complete Smart Income System &mdash; every module, the step-by-step walkthroughs and all future updates. Instant access delivered today, straight from your phone.</p>
-        <a href="https://www.jvzoo.com/b/117845/448013/99" class="pbsCtaBtn cta-button">YES, I WANT INSTANT ACCESS! &rarr;<span class="cta-button-sub">Claim your copy of the Smart Income System now</span></a>
-        <p class="cta-trust">&#128274; Secure checkout &middot; One-time payment &middot; 60-day money-back guarantee</p>
-      </div>
+    <!-- Exit Intent Modal -->
+    <div
+        x-data="{ showModal: false }"
+        x-init="document.addEventListener('mouseleave', (event) => { if (event.clientY <= 0) { showModal = true; } });"
+    >
+        <div x-show="showModal" x-cloak class="fixed inset-0 bg-black bg-opacity-80 z-[2000] flex items-center justify-center">
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-2xl w-full border-4 border-red-500 relative" @click.away="showModal = false">
+                <button class="absolute top-2 right-2 text-gray-700 hover:text-gray-900" @click="showModal = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <h2 class="text-red-500 text-4xl font-serif font-bold text-center">WAIT! <span class="text-cyan-700">IN JUST 1:47...</span></h2>
+                <h3 class="text-3xl px-10 text-cyan-700 font-serif font-semibold text-center mt-2">I'LL GIVE YOU THE 7-MINUTE-A-DAY SYSTEM That earns me more than most CEOs, doctors and lawyers combined!</h3>
+                <div class="flex items-center gap-4 mt-4">
+                    <img src="/images/popup-img.webp" alt="Man in a chair" class="w-56 h-48 rounded-lg shadow" />
+                    <p class="text-gray-700 font-serif text-lg">My wife and I were on the verge of divorce. This new system not only saved our marriage, but also allowed us to give our daughter Sarah a life we never had.</p>
+                </div>
+                <button @click="showModal = false" class="bg-[#FFFF00] pulsing text-black font-bold font-serif mt-6 px-4 py-2 rounded-lg border-4 border-blue-500 hover:bg-cyan-200 w-full underline">
+                    It only takes 7 minutes a day — either first thing in the morning or right before bed! >>
+                </button>
+            </div>
+        </div>
+
+        <!-- ── FACEBOOK POST ── -->
+        <div class="fb-post-wrapper">
+            <div class="fb-post-card">
+
+                <!-- Header -->
+                <div class="fb-post-header">
+                    <div class="fb-page-info">
+                        <div class="fb-page-avatar">PA</div>
+                        <div>
+                            <div class="fb-page-name">
+                                Pocket-Sized ATM
+                                <span class="fb-verified">✔</span>
+                            </div>
+                            <div class="fb-post-meta">
+                                <span>23 min</span>
+                                <span>·</span>
+                                <span class="fb-live-badge">LIVE</span>
+                                <span class="fb-globe">🌍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="font-size:20px; color:#65676b; cursor:pointer;">···</div>
+                </div>
+
+                <!-- Post Text -->
+                <div class="fb-post-text">
+                    I can't stop shaking. This simple phone trick is putting $500+ per day into ordinary people's bank accounts — with ZERO tech skills required.<br><br>
+                    🔴 No computer needed. No experience needed. Just your phone and 7 minutes.<br><br>
+                    Watch the video before it gets taken down 👇
+                </div>
+
+                <!-- Video -->
+                <div class="fb-video-container">
+                    <div class="fb-live-bar">
+                        <span class="fb-live-dot">● LIVE</span>
+                        <span class="fb-viewer-count">👁 <span id="viewer-count">3.244</span></span>
+                    </div>
+
+                    <!-- Floating reactions -->
+                    <div class="fb-reactions-container" id="reactionsContainer"></div>
+
+                    <!-- "Get Access Now" Button-Overlay -->
+                    <button
+                        type="button"
+                        id="secure-button-overlay"
+                        class="secure-button-overlay"
+                        onclick="scrollToOffer()"
+                    >
+                        Get Access Now
+                    </button>
+
+                    <!-- Desktop Video -->
+                    <div class="hidden md:block wistia-wrapper">
+                        <div id="wistia-video" class="w-full h-full"></div>
+                    </div>
+
+                    <!-- Mobile Video -->
+                    <div class="block md:hidden">
+                        <div
+                            class="relative w-full h-auto"
+                            x-data="{ mfullscreen: false, mhasToggledFullScreen: false }"
+                            x-on:mobilevideoplay.window="mfullscreen = true; mhasToggledFullScreen = true"
+                            x-on:mobilevideopause.window="mfullscreen = false"
+                        >
+                            <div id="wistia-video-mobile" class="w-full"></div>
+                            <div
+                                class="absolute inset-0 flex items-center justify-center h-full w-full pointer-events-none"
+                            >
+                                <img
+                                    x-show="!mfullscreen && mhasToggledFullScreen"
+                                    x-cloak
+                                    @click.stop="mfullscreen = true; globalMobileVideo.play();"
+                                    alt="play"
+                                    class="w-[180px] pulsing-video-button pointer-events-auto"
+                                    src="/images/german-pause-and-play-img.png"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reactions Bar -->
+                <div class="fb-reactions-bar">
+                    <div class="fb-reaction-icons">
+                        <span>👍</span><span>❤️</span><span>😮</span>
+                        <span id="reaction-count">4.183</span>
+                    </div>
+                    <div class="fb-comment-share-count" id="comment-count">832 Comments · 1.2K Shares</div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="fb-action-buttons">
+                    <div class="fb-action-btn">👍 Like</div>
+                    <div class="fb-action-btn">💬 Comment</div>
+                    <div class="fb-action-btn">↗ Share</div>
+                </div>
+
+                <!-- ANGEBOT direkt unter Video, vor Comments -->
+                <div id="offer-section" x-data="{ show: false }" x-init="
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.get('showoffer') === '1') {
+                        show = true;
+                    } else {
+                        setTimeout(() => show = true, 1089000);
+                    }
+                ">
+                    <div x-show="show" x-cloak class="border-2 border-green-700 rounded-xl mx-3 my-3 pb-6 bg-white">
+                        <div>
+                            <div class="bg-green-700 font-serif text-white text-2xl font-semibold tracking-wide text-center leading-tight py-4">
+                                <h1>Unlock Your Copy<br />of the Pocket-Sized ATM</h1>
+                            </div>
+                        </div>
+                        <div class="mx-5">
+                            <img src="/images/ger-bankomat.png" class="w-full h-auto" alt="Product Image" />
+                        </div>
+                        <div class="grid grid-cols-3 rounded-xl h-20 mx-4 mt-4 text-white text-sm font-medium">
+                            <div class="bg-[#8d5cc7] rounded-l-xl flex items-center justify-center gap-1 text-center px-1">
+                                <img alt="special discount icon" class="w-auto h-10 opacity-20 lg:opacity-100 absolute lg:relative" src="/images/special_discount.webp" />
+                                <span class="leading-tight">Special Discount</span>
+                            </div>
+                            <div class="bg-[#5590d8] flex items-center justify-center gap-1 text-center px-1">
+                                <img alt="instant access icon" class="w-auto h-10 opacity-20 lg:opacity-100 absolute lg:relative" src="/images/instant_access.webp" />
+                                <span class="leading-tight">Instant<br />Access</span>
+                            </div>
+                            <div class="bg-[#249e24] rounded-r-xl flex items-center justify-center gap-1 text-center px-1">
+                                <img alt="quick start icon" class="w-auto h-10 opacity-20 lg:opacity-100 absolute lg:relative" src="/images/quick_start.webp" />
+                                <span class="leading-tight">Quick-Start Bonuses</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center mt-4">
+                            <img class="mb-4 w-12" alt="left arrow" src="/images/left_arrow.png" />
+                            <div>
+                                <div class="font-serif text-xl font-bold text-center">Today For Just</div>
+                                <div class="font-serif text-[54px] font-bold text-center -mt-3 text-blue-950">47$</div>
+                            </div>
+                            <img class="mb-4 w-12" alt="right arrow" src="/images/right_arrow.png" />
+                        </div>
+                        <div class="flex items-center justify-center px-2">
+                            <a href="https://www.checkout-ds24.com/product/617629?utm_source=fblive&sid2=fblive"><img alt="order now button" src="/images/jetztbestellen.png" /></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments -->
+                <div class="fb-comments-section">
+                    <div class="fb-comments-sort">Most Relevant ▾</div>
+                    <div id="comments-container"></div>
+                </div>
+
+                <!-- Write comment -->
+                <div class="fb-write-comment">
+                    <div class="fb-write-avatar"></div>
+                    <div class="fb-write-input">Write a comment...</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="fb-footer">
+            <a href="/tos">Privacy Policy and Terms of Use</a> · <a href="/cdn-cgi/l/email-protection#ed8698838988839e989d9d829f99ad998c9e8e8588838f8c838682808c99c38e8280">Contact</a><br>
+            Copyright © 2026 Pocket-Sized ATM. All Rights Reserved.<br>
+            This website is not part of the Facebook website or Facebook Inc. FACEBOOK is a trademark of FACEBOOK, Inc.
+        </div>
+
     </div>
-  </div>
 
-  <div class="fb-react-bar">
-    <div class="fb-react-left">
-      <span class="fb-react-emoji like">&#128077;</span>
-      <span class="fb-react-emoji love">&#10084;&#65039;</span>
-      <span class="fb-react-emoji wow">&#128558;</span>
-      <span class="fb-react-count" id="likeCount">4.2K</span>
-    </div>
-    <div>
-      <span id="commentCountDisplay">892 Comments</span> &middot; <span id="shareCount">1.3K Shares</span>
-    </div>
-  </div>
-
-  <div class="fb-actions">
-    <button class="fb-act-btn" id="postLikeBtn" type="button" aria-label="Like" aria-pressed="false"><svg viewBox="0 0 24 24">
-        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
-      </svg> Like</button>
-    <button class="fb-act-btn" id="postCommentBtn" type="button" aria-label="Comment"><svg viewBox="0 0 24 24">
-        <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z" />
-      </svg> Comment</button>
-    <button class="fb-act-btn" type="button" aria-label="Share"><svg viewBox="0 0 24 24">
-        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
-      </svg> Share</button>
-  </div>
-
-
-  <div class="fb-comments-section">
-    <div class="fb-comment-sort">Most relevant <span>&#9662;</span></div>
-
-    <div class="fb-ci" id="commentCompose">
-      <div class="fb-ci-avatar">&#128100;</div>
-      <form id="commentForm" class="fb-ci-form" autocomplete="off">
-        <input id="commentInput" class="fb-ci-field" type="text" placeholder="Write a comment..." maxlength="500" autocomplete="off" aria-label="Write a comment">
-        <button type="submit" class="fb-ci-submit">Post</button>
-      </form>
-    </div>
-
-    <div id="typingIndicator" class="fb-typing">
-      <div class="fb-c-avatar" style="background:#e4e6eb"></div>
-      <div class="fb-typing-dots">
-        <div class="fb-typing-dot"></div>
-        <div class="fb-typing-dot"></div>
-        <div class="fb-typing-dot"></div>
-      </div>
-    </div>
-
-    <div id="commentsFeed"></div>
-  </div>
-</div>
-
-<style>
-/* ---------------------------------------------------------------
-   shared legal footer  (mirrors components/legal-footer.ef)
-   --------------------------------------------------------------- */
-
-.ef-lf {
-  background: #f0f0f0;
-  color: #333;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  padding: 56px 24px;
-}
-
-.ef-lf--tall { padding: 250px 24px }
-
-.ef-lf__inner { max-width: 860px; margin: 0 auto }
-
-.ef-lf__copy {
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 0 0 22px;
-}
-
-.ef-lf__links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 6px 16px;
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ef-lf__links a { color: #188bf6; text-decoration: none }
-.ef-lf__links a:hover { text-decoration: underline }
-.ef-lf__sep { color: #c2c2c2; user-select: none }
-
-.ef-lf__disclaimer {
-  max-width: 720px;
-  margin: 26px auto 0;
-  padding-top: 22px;
-  border-top: 1px solid rgba(0, 0, 0, .09);
-  font-size: 12px;
-  line-height: 1.7;
-  color: #6b7280;
-  text-align: left;
-}
-
-.ef-lf__disclaimer strong { color: #4b5563 }
-.ef-lf__disclaimer p { margin: 0 0 12px }
-.ef-lf__disclaimer p:last-child { margin-bottom: 0 }
-
-.ef-lf__hook { margin-top: 200px; font-weight: 700; color: #000; line-height: 2em }
-
-@media (max-width: 600px) {
-  .ef-lf { padding: 40px 18px }
-  .ef-lf--tall { padding: 180px 18px }
-  .ef-lf__links { font-size: 13px }
-  .ef-lf__hook { margin-top: 140px }
-}
-
-@media (max-width: 480px) {
-  .ef-lf__sep { display: none }
-  .ef-lf__links { gap: 4px 14px }
-}
-</style>
-
-<footer class="ef-lf ef-lf--tall">
-  <div class="ef-lf__inner">
-    <p class="ef-lf__copy">Copyright 2026. Smart Income System.<br />All Rights Reserved.</p>
-
-    <nav class="ef-lf__links" aria-label="Legal">
-      <a href="/privacy-policy">Privacy Policy</a>
-      <span class="ef-lf__sep" aria-hidden="true">&middot;</span>
-      <a href="/terms-and-disclaimers">Terms &amp; Disclaimers</a>
-      <span class="ef-lf__sep" aria-hidden="true">&middot;</span>
-      <a href="/ftc-compliance">FTC Compliance</a>
-      <span class="ef-lf__sep" aria-hidden="true">&middot;</span>
-      <a href="/cdn-cgi/l/email-protection#d48f878184849b8680f49199959d9889">Product Support</a>
-      <span class="ef-lf__sep" aria-hidden="true">&middot;</span>
-      <a href="/refund-policy">Refund Policy</a>
-    </nav>
-
-    <div class="ef-lf__disclaimer">
-      <p><strong>Earnings disclaimer:</strong> results shown are not typical and are not a guarantee of income. Any earnings or income statements are estimates only. Your results depend on your own effort, and you accept the entire risk of not doing as well as the examples shown. This site is not part of Facebook or Meta Platforms, Inc.</p>
-      <p>Please note that this product does not provide any guarantee of income or success. The results achieved by the product owner or any other individuals mentioned are not indicative of future success or earnings. This website is not affiliated with FaceBook or any of its associated entities. Once you navigate away from FaceBook, the responsibility for the content and its usage lies solely with the user. All content on this website, including but not limited to text, images, and multimedia, is protected by copyright law and the Digital Millennium Copyright Act. Unauthorized copying, duplication, modification, or theft, whether intentional or unintentional, is strictly prohibited. Violators will be prosecuted to the fullest extent of the law.</p>
-      <p>We want to clarify that JVZoo serves as the retailer for the products featured on this site. JVZoo&reg; is a registered trademark of BBC Systems Inc., a Florida corporation located at 1809 E. Broadway Street, Suite 125, Oviedo, FL 32765, USA, and is used with permission. The role of JVZoo as a retailer does not constitute an endorsement, approval, or review of these products or any claims, statements, or opinions used in their promotion.</p>
-      <p><strong>Lifetime Disclaimer:</strong> "Lifetime" refers to the lifetime of the product or service, not the lifetime of the buyer. This means access is provided for as long as the product/service exists and is actively maintained. The company reserves the right to modify, update, or discontinue the product/service at any time, at which point "lifetime" access will be considered fulfilled.</p>
-    </div>
-
-    <p class="ef-lf__hook">Congrats! If you are reading this you qualify to
-      receive $214.36.<br /><a target="_blank" class="pbsCtaBtn" href="https://www.jvzoo.com/b/117845/448013/99">Click here to withdraw it.</a></p>
-  </div>
-</footer>
-
-
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  /* ---------- live post engine + comments ---------- */
-  (function () {
-
-    var whiteNames = [
-      'Karen Mitchell', 'Linda Harper', 'Susan Bailey', 'Debra Foster', 'Patricia Reynolds',
-      'Nancy Coleman', 'Barbara Watson', 'Donna Simmons', 'Carol Jenkins', 'Sharon Tucker',
-      'Tammy Baker', 'Brenda Perry', 'Judy Crawford', 'Cindy Butler', 'Diane West',
-      'Janet Long', 'Sandra Gray', 'Kathy Price', 'Peggy Ross', 'Wanda Morrison',
-      'Robert Harrison', 'James Tucker', 'Steve Palmer', 'Danny Price', 'Gary Freeman',
-      'Bill Henderson', 'Larry Watson', 'Randy Morrison', 'Mike Crawford', 'Doug Bailey'
-    ];
-    var blackNames = [
-      'Tanya Brown', 'LaShonda Williams', 'Keisha Jackson', 'Denise Washington', 'Crystal Harris',
-      'Monique Lewis', 'Latoya Robinson', 'Shawna Thomas', 'Angela Moore', 'Yolanda White',
-      'Darlene King', 'Tonya Wright', 'Sheila Carter', 'Tamika Edwards', 'Gloria Bennett',
-      'Felicia Howard', 'Jasmine Scott', 'Ebony Marshall', 'Cheryl Douglas', 'Wanda Green',
-      'Marcus Johnson', 'Darnell Brown', 'Terrence Davis', 'Jerome Williams', 'Lamar Robinson',
-      'Anthony Washington', 'Tyrone Clark', 'Cedric Moore', 'Reginald Thomas', 'DeShawn Harris'
-    ];
-    var avatarColors = ['#4267B2', '#45bd62', '#e41e3f', '#f7b928', '#a040a0', '#1877f2', '#e46a2e', '#7c3aed', '#059669', '#d97706', '#dc2626', '#2563eb', '#c026d3', '#0891b2'];
-
-    var citiesByState = {
-      'Alabama': ['Huntsville', 'Montgomery', 'Mobile', 'Tuscaloosa', 'Hoover', 'Dothan', 'Auburn', 'Decatur'],
-      'Georgia': ['Savannah', 'Augusta', 'Macon', 'Athens', 'Columbus', 'Valdosta', 'Albany', 'Dalton'],
-      'Tennessee': ['Memphis', 'Knoxville', 'Chattanooga', 'Clarksville', 'Murfreesboro', 'Johnson City', 'Jackson', 'Franklin'],
-      'Mississippi': ['Jackson', 'Gulfport', 'Southaven', 'Hattiesburg', 'Biloxi', 'Meridian', 'Tupelo', 'Olive Branch'],
-      'South Carolina': ['Charleston', 'Columbia', 'Greenville', 'Rock Hill', 'Sumter', 'Spartanburg', 'Florence', 'Goose Creek'],
-      'North Carolina': ['Charlotte', 'Raleigh', 'Greensboro', 'Durham', 'Winston-Salem', 'Fayetteville', 'Wilmington', 'High Point'],
-      'Louisiana': ['New Orleans', 'Baton Rouge', 'Shreveport', 'Lafayette', 'Lake Charles', 'Monroe', 'Alexandria', 'Kenner'],
-      'Texas': ['Houston', 'Dallas', 'San Antonio', 'Austin', 'Fort Worth', 'El Paso', 'Arlington', 'Corpus Christi'],
-      'Florida': ['Jacksonville', 'Tampa', 'Orlando', 'St. Petersburg', 'Tallahassee', 'Fort Lauderdale', 'Pensacola', 'Gainesville'],
-      'Virginia': ['Virginia Beach', 'Norfolk', 'Richmond', 'Chesapeake', 'Newport News', 'Lynchburg', 'Hampton', 'Roanoke'],
-      'Kentucky': ['Louisville', 'Lexington', 'Bowling Green', 'Owensboro', 'Covington', 'Hopkinsville', 'Richmond', 'Florence'],
-      'Arkansas': ['Little Rock', 'Fort Smith', 'Fayetteville', 'Springdale', 'Jonesboro', 'Conway', 'Rogers', 'Pine Bluff'],
-      'Oklahoma': ['Oklahoma City', 'Tulsa', 'Norman', 'Broken Arrow', 'Edmond', 'Lawton', 'Moore', 'Midwest City'],
-      'Missouri': ['Kansas City', 'Springfield', 'Columbia', 'Independence', 'St. Joseph', 'Joplin', 'Jefferson City', 'Cape Girardeau']
-    };
-    var fallbackCities = ['Nashville', 'Charlotte', 'Jacksonville', 'Memphis', 'Birmingham', 'Savannah', 'Charleston', 'Raleigh', 'Richmond', 'Tampa', 'Louisville', 'Knoxville', 'Mobile', 'Chattanooga', 'Greenville', 'Augusta', 'Macon', 'Huntsville', 'Columbia', 'Pensacola'];
-    var userCities = fallbackCities.slice();
-
-    var comments = [
-      { t: "I'm literally crying right now. $387 in my first week. I've never made that much at my JOB in a week" },
-      { t: "Started 3 days ago and already seeing $104. I thought this was another scam but WOW" },
-      { t: "My husband just looked at my phone and asked why I was crying. I showed him the deposit notification. $561 in 11 days." },
-      { t: "2 months in now. Averaging $310 to $420 per day. I quit my nursing job last Tuesday." },
-      { t: "$218 yesterday. $274 today. I don't even understand HOW this works I just know it DOES" },
-      { t: "6 weeks in and I've already made more than I made all of last year at Walmart. I'm shaking typing this" },
-      { t: "Called my mom crying at 6am. She thought someone died. No mama I just made $600 while I was SLEEPING" },
-      { t: "Week 2 update: $1,290 total. I called my sister sobbing. She thought something was wrong. No everything is finally RIGHT" },
-      { t: "I haven't told anyone yet because I'm scared they'll think I'm lying. $495 per day for the last 8 days straight" },
-      { t: "Day 5: $124. Day 6: $161. Day 7: $267. Day 8: $318. This is NOT slowing down" },
-      { t: "$630 today and I literally didn't touch my phone for 6 hours. What is happening right now" },
-      { t: "3 months in. Just paid off my car. IN FULL. $3,400 cash. I ugly cried at the dealership" },
-      { t: "Just hit my first $3,000 month. I've worked minimum wage for 12 YEARS. I'm done. I'm free." },
-      { t: "8 months in. Making $450 to $600 per day consistently. Paid off every debt I had. I'm 34." },
-      { t: "Started in January. Paid off $7,000 in credit card debt by March. Now I'm just stacking money" },
-      { t: "This is my 4th month. I make more in a day than I used to make in 2 weeks. I still pinch myself every morning" },
-      { t: "14 days in. $2,010 total. My therapist asked me why I was smiling so much. I couldn't even explain it" },
-      { t: "My kids don't know yet. Surprising them with Disney World next month. First vacation in 6 years. $360 per day now" },
-      { t: "I'm 58 years old. I can barely send a text message. If I can do this LITERALLY anyone can. Made $290 yesterday" },
-      { t: "My daughter set it up for me because I don't know computers. That was 3 weeks ago. I've made $4,200 since" },
-      { t: "I don't understand technology AT ALL. I asked my nephew what a browser was last month. I made $402 yesterday." },
-      { t: "No website. No computer. No skills. Just my phone. $263 per day for the past 12 days. I cannot stop crying" },
-      { t: "I'm a retired teacher with ZERO tech knowledge. My grandson showed me how to start. I made $1,260 my first week" },
-      { t: "People keep asking 'is it hard?' NO. That's the whole point. The button does everything. You just push it." },
-      { t: "I literally sat on my couch eating chips and made $340 between lunch and dinner. This is real life right now" },
-      { t: "I don't have a degree. I don't have experience. I don't even have a computer. $223 yesterday from my PHONE" },
-      { t: "I literally just push the button every morning and check my phone before bed. That's it. $330 average per day." },
-      { t: "I almost didn't click. I ALMOST scrolled past. That would have been the biggest mistake of my life. $704 this week" },
-      { t: "Keep watching. I know it sounds crazy at first. But what he shows at the 8 minute mark changed EVERYTHING for me" },
-      { t: "I was about to close this but something told me to keep watching. 10 minutes in and my jaw hit the floor" },
-      { t: "DO NOT stop this video. What comes next is the whole reason your life is about to change. Trust me." },
-      { t: "If you're 2 minutes in you have NO IDEA what's coming. The phone part... I lost my mind" },
-      { t: "I paused this 3 times because I didn't believe it. Then I tried it. Then I started screaming" },
-      { t: "The first 5 minutes are good but what comes after... I'm still shaking 3 days later" },
-      { t: "When he pulls out his phone and shows the screen... THAT'S when everything clicks. Keep going." },
-      { t: "Y'ALL ARE NOT READY for what he shows at the 8 minute mark. My jaw is STILL on the floor" },
-      { t: "Anyone else get full body chills around the 6 minute mark? Just me??" },
-      { t: "My neighbor thought I was crazy when I told her. Then she watched it. Now she's the crazy one telling everybody" },
-      { t: "I screamed so loud my dog started barking. You'll understand why when you get to that part" },
-      { t: "My husband said it was a scam. I showed him my bank account 5 days later. He hasn't said a word since" },
-      { t: "I've been scammed 4 times online. THIS IS NOT THAT. 3 months in, $14,000 made. I have the receipts." },
-      { t: "First day: $37. I almost gave up. Second day: $170. By day 7: $447. DON'T. GIVE. UP." },
-      { t: "I showed this to 9 people. All 9 are making money now. We started a group chat about it" },
-      { t: "My best friend texted me '911 watch this NOW' last week. I thought she was joking. She was not." },
-      { t: "I'm a single mom of 3. I cried in the grocery store last month because I couldn't afford milk. Now I'm making $270 per day" },
-      { t: "Year and a half in. $116,000 total. I went from food stamps to first class. No exaggeration." },
-      { t: "I was living in my car 8 months ago. Got a studio last month. Now looking at houses. $480 per day" },
-      { t: "Anyone else just sitting here ugly crying? Because same. $720 today and I used to make that in a MONTH" },
-      { t: "Watching from {city} and wondering why nobody told me about this sooner. 4 days in, $554 already" },
-      { t: "{city} here! Just showed my coworker and she started that same day. Now she's making $270 per day too" },
-      { t: "Anyone in {city} doing this?? I need someone to talk to because my friends think I've lost it" },
-      { t: "{city} checking in. 2 weeks in and I already put in my two weeks notice at work" },
-      { t: "How long is this going to be up?? I need my sister and my mom to see this before it's gone" },
-      { t: "They keep trying to take this down. SHARE IT before it disappears" },
-      { t: "Somebody screen record this NOW. They always take these down when too many people find out" },
-      { t: "This won't be up much longer. It's way too good for them to let people see for free" }
-    ];
-
-    /* ---------- helpers ---------- */
-    function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min }
-    function pick(arr) { return arr[rand(0, arr.length - 1)] }
-    function shuffle(arr) { var a = arr.slice(); for (var i = a.length - 1; i > 0; i--) { var j = rand(0, i); var t = a[i]; a[i] = a[j]; a[j] = t } return a }
-    function formatNum(n) { if (n >= 10000) return (n / 1000).toFixed(0) + 'K'; if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K'; return n.toString() }
-    function getInitials(name) { var p = name.split(' '); return (p[0][0] + (p.length > 1 ? p[p.length - 1][0] : '')).toUpperCase() }
-    function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML }
-
-    /* ---------- geolocation ---------- */
-    (function loadGeo() {
-      try {
-        var x = new XMLHttpRequest(); x.open('GET', 'https://ipapi.co/json/', true); x.timeout = 5000;
-        x.onload = function () {
-          try {
-            var d = JSON.parse(x.responseText);
-            if (d.region && citiesByState[d.region]) userCities = citiesByState[d.region].slice();
-          } catch (e) { }
-        };
-        x.send();
-      } catch (e) { }
-    })();
-
-    /* ---------- viewer count ---------- */
-    var viewerBase = rand(3200, 4200);
-    var viewerEl = document.getElementById('viewerCount');
-    (function updateViewers() {
-      viewerBase += rand(-10, 18);
-      if (viewerBase < 2800) viewerBase = 2800 + rand(0, 200);
-      if (viewerBase > 5500) viewerBase = 5500 - rand(0, 200);
-      if (viewerEl) viewerEl.textContent = viewerBase.toLocaleString('en-US');
-      setTimeout(updateViewers, rand(3000, 6000));
-    })();
-
-    /* ---------- counters ---------- */
-    var likeNum = rand(3800, 4500), commentNum = rand(780, 920), shareNum = rand(1100, 1500);
-    var likeEl = document.getElementById('likeCount'),
-        commentEl = document.getElementById('commentCountDisplay'),
-        shareEl = document.getElementById('shareCount');
-
-    function paintLikes() { if (likeEl) likeEl.textContent = formatNum(likeNum) }
-    function paintComments() { if (commentEl) commentEl.textContent = formatNum(commentNum) + ' Comments' }
-
-    (function updateCounters() {
-      likeNum += rand(0, 3); commentNum += rand(0, 1); shareNum += rand(0, 2);
-      paintLikes(); paintComments();
-      if (shareEl) shareEl.textContent = formatNum(shareNum) + ' Shares';
-      setTimeout(updateCounters, rand(4000, 8000));
-    })();
-
-    /* ---------- floating reactions ---------- */
-    var floatContainer = document.getElementById('floatReactions');
-    var floatEmojis = ['👍', '❤️', '😮', '🙏', '❤️', '👍', '❤️', '🙌'];
-    function floatReaction() {
-      if (!floatContainer) return;
-      var el = document.createElement('div');
-      el.className = 'fb-float-emoji';
-      el.textContent = pick(floatEmojis);
-      el.style.left = rand(0, 30) + 'px';
-      floatContainer.appendChild(el);
-      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el) }, 3200);
-      setTimeout(floatReaction, rand(600, 2500));
-    }
-    setTimeout(floatReaction, rand(2000, 4000));
-
-    /* ---------- time ago ---------- */
-    var startTime = Date.now() - rand(20, 30) * 60000;
-    var timeAgoEl = document.getElementById('timeAgo');
-    (function updateTimeAgo() {
-      var mins = Math.floor((Date.now() - startTime) / 60000);
-      if (timeAgoEl) timeAgoEl.textContent = mins < 60 ? mins + 'm' : Math.floor(mins / 60) + 'h';
-      setTimeout(updateTimeAgo, 60000);
-    })();
-
-    /* ---------- like effect ---------- */
-    var LIKE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>';
-
-    function flashClass(el, cls, ms) {
-      if (!el) return;
-      el.classList.add(cls);
-      setTimeout(function () { el.classList.remove(cls) }, ms);
-    }
-
-    function spawnLikeBurst(anchor) {
-      if (!anchor) return;
-      var burst = document.createElement('span');
-      burst.className = 'fb-like-burst';
-      burst.setAttribute('aria-hidden', 'true');
-      burst.innerHTML = LIKE_ICON;
-      anchor.appendChild(burst);
-      setTimeout(function () { if (burst.parentNode) burst.parentNode.removeChild(burst) }, 650);
-    }
-
-    var postLiked = false;
-    var postLikeBtn = document.getElementById('postLikeBtn');
-    if (postLikeBtn) {
-      postLikeBtn.addEventListener('click', function () {
-        postLiked = !postLiked;
-        postLikeBtn.classList.toggle('is-liked', postLiked);
-        postLikeBtn.setAttribute('aria-pressed', postLiked ? 'true' : 'false');
-        flashClass(postLikeBtn, 'is-pop', 480);
-        if (postLiked) { spawnLikeBurst(postLikeBtn); likeNum += 1 } else { likeNum = Math.max(0, likeNum - 1) }
-        paintLikes();
-      });
-    }
-
-    /* ---------- comments engine ---------- */
-    var feed = document.getElementById('commentsFeed');
-    var typingEl = document.getElementById('typingIndicator');
-    var compose = document.getElementById('commentCompose');
-    var form = document.getElementById('commentForm');
-    var input = document.getElementById('commentInput');
-
-    var USER_NAME = 'You';
-    var THREAD_STORAGE_KEY = 'smartincomesystem:fblive-thread';
-    var MAX_THREAD = 60;
-
-    var shuffledComments = shuffle(comments);
-    var commentIndex = 0;
-    var usedNames = {};
-
-    /* randomuser.me portraits — one unique face per commenter.
-       Both name pools are ordered: indexes 0-19 are women, 20-29 are men. */
-    var FEMALE_COUNT = 20;
-    var portraitPool = { women: shuffle(range(100)), men: shuffle(range(100)) };
-
-    function range(n) { var a = []; for (var i = 0; i < n; i++) a.push(i); return a }
-
-    /* reserved: the testimonial face in the opt-in modal, so no commenter reuses it */
-    var usedPhotos = { 'https://randomuser.me/api/portraits/women/68.jpg': true };
-
-    function nextPortrait(gender) {
-      var bucket = portraitPool[gender];
-      var url, guard = 0;
-      do {
-        if (!bucket.length) bucket.push.apply(bucket, shuffle(range(100)));
-        url = 'https://randomuser.me/api/portraits/' + gender + '/' + bucket.pop() + '.jpg';
-        guard++;
-      } while (usedPhotos[url] && guard < 120);
-      usedPhotos[url] = true;
-      return url;
-    }
-
-    function pickName() {
-      var pool = Math.random() < 0.5 ? blackNames : whiteNames;
-      var idx = rand(0, pool.length - 1);
-      var tries = 0;
-      while (usedNames[pool[idx]] && tries < 5) { idx = rand(0, pool.length - 1); tries++ }
-      var name = pool[idx];
-      usedNames[name] = true;
-      var gender = idx < FEMALE_COUNT ? 'women' : 'men';
-      return { name: name, color: pick(avatarColors), photo: nextPortrait(gender) };
-    }
-
-    /* One label for every comment, always derived from its timestamp, so the
-       whole thread ages correctly across refreshes. */
-    function timeLabel(ts) {
-      var mins = Math.max(0, Math.floor((Date.now() - ts) / 60000));
-      if (mins < 1) return 'Just now';
-      if (mins < 60) return mins + 'm';
-      var hrs = Math.floor(mins / 60);
-      if (hrs < 24) return hrs + 'h';
-      return Math.floor(hrs / 24) + 'd';
-    }
-
-    function commentMarkup(entry) {
-      var initials = entry.isUser ? '&#128100;' : getInitials(entry.name);
-      /* photo covers the initials; if it 404s it removes itself and the initials show through */
-      var photo = entry.photo ? '<img src="' + entry.photo + '" alt="" loading="lazy" onerror="this.remove()">' : '';
-      return '<div class="fb-comment' + (entry.isUser ? ' fb-comment--me' : '') + '" data-at="' + entry.at + '">' +
-        '<div class="fb-c-avatar" style="background:' + entry.color + '">' + photo + initials + '</div>' +
-        '<div class="fb-c-body">' +
-        '<div class="fb-c-bubble">' +
-        '<div class="fb-c-name">' + escapeHtml(entry.name) + (entry.city ? ' <span class="fb-c-city">&middot; ' + escapeHtml(entry.city) + '</span>' : '') + '</div>' +
-        '<div class="fb-c-text">' + escapeHtml(entry.text) + '</div>' +
-        '</div>' +
-        '<div class="fb-c-meta"><span class="fb-c-time">' + timeLabel(entry.at) + '</span><span class="fb-c-like" role="button" tabindex="0" aria-pressed="false">Like</span><span>Reply</span></div>' +
-        '</div>' +
-        '</div>';
-    }
-
-    function makeSimulatedEntry(template, minutesAgo) {
-      var person = pickName();
-      var text = template.t;
-      if (text.indexOf('{city}') !== -1) text = text.replace(/\{city\}/g, pick(userCities));
-      return {
-        name: person.name,
-        color: person.color,
-        photo: person.photo,
-        text: text,
-        city: Math.random() < 0.25 ? pick(userCities) : '',
-        at: Date.now() - Math.round(minutesAgo * 60000)
-      };
-    }
-
-    function getNext() {
-      if (commentIndex >= shuffledComments.length) { shuffledComments = shuffle(comments); commentIndex = 0; usedNames = {} }
-      return shuffledComments[commentIndex++];
-    }
-
-    /* --- the whole thread persists: seeded, streamed and the visitor's own --- */
-    function loadThread() {
-      try {
-        var raw = window.localStorage.getItem(THREAD_STORAGE_KEY);
-        if (!raw) return [];
-        var parsed = JSON.parse(raw);
-        if (!Array.isArray(parsed)) return [];
-        return parsed.filter(function (e) {
-          return e && typeof e.text === 'string' && e.text.trim() && typeof e.at === 'number';
-        });
-      } catch (e) { return [] }
-    }
-
-    function saveThread() {
-      try {
-        window.localStorage.setItem(THREAD_STORAGE_KEY, JSON.stringify(thread.slice(-MAX_THREAD)));
-      } catch (e) { }
-    }
-
-    var thread = loadThread();
-
-    /* Don't hand out a name or a face the stored thread already used. */
-    thread.forEach(function (e) {
-      if (e.name) usedNames[e.name] = true;
-      if (e.photo) usedPhotos[e.photo] = true;
-    });
-
-    function addEntry(entry, animate) {
-      thread.push(entry);
-      if (thread.length > MAX_THREAD) thread = thread.slice(-MAX_THREAD);
-      saveThread();
-      if (feed) feed.insertAdjacentHTML('afterbegin', commentMarkup(entry));
-      if (!animate && feed && feed.firstChild) feed.firstChild.style.animation = 'none';
-    }
-
-    /* First visit seeds the thread; later visits replay exactly what was stored. */
-    if (feed) {
-      if (!thread.length) {
-        for (var i = 0; i < 4; i++) thread.push(makeSimulatedEntry(getNext(), rand(2, 15)));
-        saveThread();
-      }
-      var ordered = thread.slice().sort(function (a, b) { return b.at - a.at });
-      feed.innerHTML = ordered.map(commentMarkup).join('');
-      /* restored rows shouldn't replay the slide-in animation */
-      Array.prototype.forEach.call(feed.children, function (row) { row.style.animation = 'none' });
-    }
-
-    function refreshTimes() {
-      if (!feed) return;
-      feed.querySelectorAll('.fb-comment[data-at]').forEach(function (row) {
-        var stamp = parseInt(row.getAttribute('data-at'), 10);
-        var t = row.querySelector('.fb-c-time');
-        if (stamp && t) t.textContent = timeLabel(stamp);
-      });
-    }
-    setInterval(refreshTimes, 30000);
-
-    /* --- streaming simulated comments --- */
-    var totalAdded = thread.length;
-    function addNewComment() {
-      if (totalAdded >= MAX_THREAD || !feed) return;
-      if (typingEl) typingEl.style.display = 'flex';
-      setTimeout(function () {
-        if (typingEl) typingEl.style.display = 'none';
-        addEntry(makeSimulatedEntry(getNext(), 0), true);
-        totalAdded++;
-        commentNum++; paintComments();
-        var delay = totalAdded < 12 ? rand(4000, 7000) : totalAdded < 25 ? rand(6000, 10000) : rand(8000, 14000);
-        setTimeout(addNewComment, delay);
-      }, rand(1500, 3000));
-    }
-    setTimeout(addNewComment, rand(4000, 7000));
-
-    /* --- posting --- */
-    function syncHasText() { if (form && input) form.classList.toggle('has-text', !!input.value.trim()) }
-
-    if (form && input) {
-      input.addEventListener('input', syncHasText);
-      syncHasText();
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        var text = input.value.trim();
-        if (!text || !feed) return;
-        addEntry({ name: USER_NAME, color: '#1877f2', text: text, city: '', at: Date.now(), isUser: true }, true);
-        commentNum++; paintComments();
-        input.value = '';
-        syncHasText();
-      });
-    }
-
-    function focusComposer() {
-      if (!input) return;
-      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(function () {
-        input.focus({ preventScroll: true });
-        flashClass(compose, 'fb-ci--focus', 900);
-      }, 280);
-    }
-
-    var postCommentBtn = document.getElementById('postCommentBtn');
-    if (postCommentBtn) postCommentBtn.addEventListener('click', focusComposer);
-
-    /* --- per-comment like --- */
-    function toggleCommentLike(btn) {
-      var liked = btn.classList.toggle('is-liked');
-      btn.setAttribute('aria-pressed', liked ? 'true' : 'false');
-      flashClass(btn, 'is-pop', 480);
-      if (liked) spawnLikeBurst(btn);
-    }
-
-    if (feed) {
-      feed.addEventListener('click', function (event) {
-        var btn = event.target.closest ? event.target.closest('.fb-c-like') : null;
-        if (btn) toggleCommentLike(btn);
-      });
-      feed.addEventListener('keydown', function (event) {
-        if (event.key !== 'Enter' && event.key !== ' ') return;
-        var btn = event.target.closest ? event.target.closest('.fb-c-like') : null;
-        if (btn) { event.preventDefault(); toggleCommentLike(btn) }
-      });
-    }
-
-    /* --- fade the live overlay after 2 minutes --- */
-    setTimeout(function () {
-      var ov = document.getElementById('playerOverlay');
-      if (!ov) return;
-      ov.style.transition = 'opacity 1.5s ease';
-      ov.style.opacity = '0';
-      setTimeout(function () { ov.style.display = 'none' }, 1600);
-    }, 120000);
-
-  })();
-</script>
-
-
-        
-<script>
-    window.page_events = [];
-</script>
-
-
-
-
-        <script type="module" src="https://elasticfunnels.b-cdn.net/web/build/assets/main.js" crossorigin="anonymous"></script>
-                
-<img src='https://i.jvzoo.com/117845/448013/99' alt="Smart Income System" border="0" width='1' height='1' />
-
-
-
-
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"7ed95e36afb64af494010479cc72b04b","r":1}' crossorigin="anonymous"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // ── Wistia Videos ──
+        let globalVideo;
+        let globalMobileVideo;
+        function loadWistiaVideo() {
+            const videoContainer = document.getElementById("wistia-video");
+            const mobileVideoContainer = document.getElementById("wistia-video-mobile");
+            if (videoContainer) videoContainer.innerHTML = "";
+            if (mobileVideoContainer) mobileVideoContainer.innerHTML = "";
+
+            let videoId = "c0h41vpzk5";
+            let mobileVideoId = "c0h41vpzk5";
+
+            if (videoContainer) {
+                const wistiaDiv = document.createElement("div");
+                wistiaDiv.className = `wistia_embed wistia_async_${videoId}`;
+                wistiaDiv.style.cssText = "width:100%;height:100%;";
+                videoContainer.appendChild(wistiaDiv);
+            }
+            if (mobileVideoContainer) {
+                const mobileWistiaDiv = document.createElement("div");
+                mobileWistiaDiv.className = `wistia_embed wistia_async_${mobileVideoId}`;
+                mobileVideoContainer.appendChild(mobileWistiaDiv);
+            }
+
+            if (!window._wistiaInitialized) {
+                const s = document.createElement("script");
+                s.src = "https://fast.wistia.com/assets/external/E-v1.js";
+                s.async = true;
+                document.head.appendChild(s);
+                window._wistiaInitialized = true;
+            }
+
+            window._wq = window._wq || [];
+            _wq.push({ id: videoId, options: { videoFoam: true }, onReady: function(v) { globalVideo = v; } });
+            _wq.push({ id: mobileVideoId, options: { videoFoam: true }, onReady: function(v) {
+                globalMobileVideo = v;
+                v.bind("play", function() { window.dispatchEvent(new Event("mobilevideoplay")); });
+                v.bind("pause", function() { window.dispatchEvent(new Event("mobilevideopause")); });
+            }});
+        }
+        loadWistiaVideo();
+
+        // ── Live Viewer Count ──
+        let viewerBase = 3244;
+        setInterval(() => {
+            viewerBase += Math.floor(Math.random() * 7) - 2;
+            if (viewerBase < 3100) viewerBase = 3100;
+            document.getElementById('viewer-count').textContent = viewerBase.toLocaleString('de-DE');
+        }, 4000);
+
+        // ── Live Like Count ──
+        let likeCount = 4183;
+        function updateLikes() {
+            // Mostly small increments, occasionally big jumps
+            const rand = Math.random();
+            if (rand < 0.08) {
+                // Big jump: +30 to +80
+                likeCount += Math.floor(Math.random() * 50) + 30;
+            } else if (rand < 0.3) {
+                // Medium: +5 to +15
+                likeCount += Math.floor(Math.random() * 10) + 5;
+            } else {
+                // Small: +1 to +4
+                likeCount += Math.floor(Math.random() * 4) + 1;
+            }
+            document.getElementById('reaction-count').textContent = likeCount.toLocaleString('de-DE');
+            // Schedule next update: 2-6 seconds
+            setTimeout(updateLikes, 2000 + Math.random() * 4000);
+        }
+        setTimeout(updateLikes, 3000);
+
+        // ── Floating Reactions ──
+        const reactionEmojis = ['👍','❤️','😮','🔥','💰','🤑','👏'];
+        function spawnReaction() {
+            const container = document.getElementById('reactionsContainer');
+            const emoji = document.createElement('span');
+            emoji.className = 'fb-reaction-emoji';
+            emoji.textContent = reactionEmojis[Math.floor(Math.random() * reactionEmojis.length)];
+            emoji.style.bottom = '0px';
+            container.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 3200);
+        }
+        setInterval(spawnReaction, 1200);
+
+        // ── Live Comments ──
+        const allComments = [
+            { name: "Linda Hartmann", initials: "LH", color: "#1877f2", text: "I'm literally crying right now. $387 in my first week. I've never made that much at my JOB in a week", time: "Just now" },
+            { name: "Markus Bauer", initials: "MB", color: "#e41e3f", text: "Started 3 days ago and already seeing $104. I thought this was another scam but WOW", time: "Just now" },
+            { name: "Lars Weber", initials: "LW", color: "#45bd62", text: "My husband just looked at my phone and asked why I was crying. I showed him the deposit notification. $561 in 11 days.", time: "Just now" },
+            { name: "Dieter Fischer", initials: "DF", color: "#f7b928", text: "2 months in now. Averaging $310 to $420 per day. I quit my nursing job last Tuesday.", time: "Just now" },
+            { name: "Jana Schmidt", initials: "JS", color: "#a855f7", text: "$218 yesterday. $274 today. I don't even understand HOW this works I just know it DOES", time: "Just now" },
+            { name: "Daniel Preiss", initials: "DP", color: "#06b6d4", text: "6 weeks in and I've already made more than I made all of last year at Walmart. I'm shaking typing this", time: "Just now" },
+            { name: "Dagmar Wolf", initials: "DW", color: "#e41e3f", text: "Called my mom crying at 6am. She thought someone died. No mama I just made $600 while I was SLEEPING", time: "Just now" },
+            { name: "Julia Cramer", initials: "JC", color: "#1877f2", text: "Week 2 update: $1,290 total. I called my sister sobbing. She thought something was wrong. No everything is finally RIGHT", time: "Just now" },
+            { name: "Petra Roth", initials: "PR", color: "#45bd62", text: "I haven't told anyone yet because I'm scared they'll think I'm lying. $495 per day for the last 8 days straight", time: "Just now" },
+            { name: "Walter Moll", initials: "WM", color: "#f7b928", text: "Day 5: $124. Day 6: $161. Day 7: $267. Day 8: $318. This is NOT slowing down", time: "Just now" },
+            { name: "Gabi Beckmann", initials: "GB", color: "#a855f7", text: "$630 today and I literally didn't touch my phone for 6 hours. What is happening right now", time: "Just now" },
+            { name: "Andreas Möller", initials: "AM", color: "#06b6d4", text: "3 months in. Just paid off my car. IN FULL. $3,400 cash. I ugly cried at the dealership", time: "Just now" },
+            { name: "Jürgen Werner", initials: "JW", color: "#e41e3f", text: "Just hit my first $3,000 month. I've worked minimum wage for 12 YEARS. I'm done. I'm free.", time: "Just now" },
+            { name: "Patricia Reimann", initials: "PR", color: "#1877f2", text: "8 months in. Making $450 to $600 per day consistently. Paid off every debt I had. I'm 34.", time: "Just now" },
+            { name: "Christian Mayer", initials: "CM", color: "#45bd62", text: "Started in January. Paid off $7,000 in credit card debt by March. Now I'm just stacking money", time: "Just now" },
+            { name: "Lars Becker", initials: "LB", color: "#f7b928", text: "This is my 4th month. I make more in a day than I used to make in 2 weeks. I still pinch myself every morning", time: "Just now" },
+            { name: "Rainer Thomas", initials: "RT", color: "#a855f7", text: "14 days in. $2,010 total. My therapist asked me why I was smiling so much. I couldn't even explain it", time: "Just now" },
+            { name: "Waltraud Grün", initials: "WG", color: "#06b6d4", text: "My kids don't know yet. Surprising them with Disney World next month. First vacation in 6 years. $360 per day now", time: "Just now" },
+            { name: "Maria Lehmann", initials: "ML", color: "#e41e3f", text: "I'm 58 years old. I can barely send a text message. If I can do this LITERALLY anyone can. Made $290 yesterday", time: "Just now" },
+            { name: "Michael Cramer", initials: "MC", color: "#1877f2", text: "My daughter set it up for me because I don't know computers. That was 3 weeks ago. I've made $4,200 since", time: "Just now" },
+            { name: "Barbara Watzke", initials: "BW", color: "#45bd62", text: "I don't understand technology AT ALL. I asked my nephew what a browser was last month. I made $402 yesterday.", time: "Just now" },
+            { name: "Jonas Tuchmann", initials: "JT", color: "#f7b928", text: "No website. No computer. No skills. Just my phone. $263 per day for the past 12 days. I cannot stop crying", time: "Just now" },
+            { name: "Kai-Jürgen Koch", initials: "KK", color: "#a855f7", text: "I'm a retired teacher with ZERO tech knowledge. My grandson showed me how to start. I made $1,260 my first week", time: "Just now" },
+            { name: "Gabi Brenner", initials: "GB", color: "#06b6d4", text: "People keep asking 'is it hard?' NO. That's the whole point. The button does everything. You just push it.", time: "Just now" },
+            { name: "Rainer Hoffmann", initials: "RH", color: "#e41e3f", text: "I literally sat on my couch eating chips and made $340 between lunch and dinner. This is real life right now", time: "Just now" },
+            { name: "Yvonne Weiß", initials: "YW", color: "#1877f2", text: "I don't have a degree. I don't have experience. I don't even have a computer. $223 yesterday from my PHONE", time: "Just now" },
+            { name: "Dorothea Sommer", initials: "DS", color: "#45bd62", text: "I literally just push the button every morning and check my phone before bed. That's it. $330 average per day.", time: "Just now" },
+            { name: "Lena Winter", initials: "LW", color: "#f7b928", text: "I almost didn't click. I ALMOST scrolled past. That would have been the biggest mistake of my life. $704 this week", time: "Just now" },
+            { name: "Dagmar König", initials: "DK", color: "#a855f7", text: "Keep watching. I know it sounds crazy at first. But what he shows at the 8 minute mark changed EVERYTHING for me", time: "Just now" },
+            { name: "Eva-Maria Braun", initials: "EB", color: "#06b6d4", text: "I was about to close this but something told me to keep watching. 10 minutes in and my jaw hit the floor", time: "Just now" },
+            { name: "Thomas Bäcker", initials: "PA", color: "#e41e3f", text: "DO NOT stop this video. What comes next is the whole reason your life is about to change. Trust me.", time: "Just now" },
+            { name: "Klaus Michels", initials: "KM", color: "#1877f2", text: "If you're 2 minutes in you have NO IDEA what's coming. The phone part... I lost my mind", time: "Just now" },
+            { name: "Thomas Davidoff", initials: "TD", color: "#45bd62", text: "I paused this 3 times because I didn't believe it. Then I tried it. Then I started screaming", time: "Just now" },
+            { name: "Christoph Müller", initials: "CM", color: "#f7b928", text: "The first 5 minutes are good but what comes after... I'm still shaking 3 days later", time: "Just now" },
+            { name: "Sabine Baumann", initials: "SB", color: "#a855f7", text: "When he pulls out his phone and shows the screen... THAT'S when everything clicks. Keep going.", time: "Just now" },
+            { name: "Silke Czerny", initials: "SC", color: "#06b6d4", text: "Y'ALL ARE NOT READY for what he shows at the 8 minute mark. My jaw is STILL on the floor", time: "Just now" },
+            { name: "Sandra Grau", initials: "SG", color: "#e41e3f", text: "Anyone else get full body chills around the 6 minute mark? Just me??", time: "Just now" },
+            { name: "Laura Robinson", initials: "LR", color: "#1877f2", text: "My neighbor thought I was crazy when I told her. Then she watched it. Now she's the crazy one telling everybody", time: "Just now" },
+            { name: "Georg Friedmann", initials: "GF", color: "#45bd62", text: "I screamed so loud my dog started barking. You'll understand why when you get to that part", time: "Just now" },
+            { name: "Lena Winkelmann", initials: "LW", color: "#f7b928", text: "My husband said it was a scam. I showed him my bank account 5 days later. He hasn't said a word since", time: "Just now" },
+            { name: "Tanja Wrobel", initials: "TW", color: "#a855f7", text: "I've been scammed 4 times online. THIS IS NOT THAT. 3 months in, $14,000 made. I have the receipts.", time: "Just now" },
+            { name: "Dominik Baumann", initials: "DB", color: "#06b6d4", text: "First day: $37. I almost gave up. Second day: $170. By day 7: $447. DON'T. GIVE. UP.", time: "Just now" },
+            { name: "Judith Cramer", initials: "JC", color: "#e41e3f", text: "I showed this to 9 people. All 9 are making money now. We started a group chat about it", time: "Just now" },
+            { name: "Doris Wagner", initials: "DW", color: "#1877f2", text: "My best friend texted me '911 watch this NOW' last week. I thought she was joking. She was not.", time: "Just now" },
+            { name: "Franziska Held", initials: "FH", color: "#45bd62", text: "I'm a single mom of 3. I cried in the grocery store last month because I couldn't afford milk. Now I'm making $270 per day", time: "Just now" },
+            { name: "Luisa Hartmann", initials: "LH", color: "#f7b928", text: "Year and a half in. $116,000 total. I went from food stamps to first class. No exaggeration.", time: "Just now" },
+            { name: "Brigitte Pöhl", initials: "BP", color: "#a855f7", text: "I was living in my car 8 months ago. Got a studio last month. Now looking at houses. $480 per day", time: "Just now" },
+            { name: "Tina Edelmann", initials: "TE", color: "#06b6d4", text: "Anyone else just sitting here ugly crying? Because same. $720 today and I used to make that in a MONTH", time: "Just now" },
+            { name: "Claudia Busch", initials: "CB", color: "#e41e3f", text: "Watching from {city} and wondering why nobody told me about this sooner. 4 days in, $554 already", time: "Just now" },
+            { name: "Christine Hering", initials: "CH", color: "#1877f2", text: "{city} here! Just showed my coworker and she started that same day. Now she's making $270 per day too", time: "Just now" },
+            { name: "Stefanie Thoma", initials: "ST", color: "#45bd62", text: "Anyone in {city} doing this?? I need someone to talk to because my friends think I've lost it", time: "Just now" },
+            { name: "Michael Jansen", initials: "MJ", color: "#f7b928", text: "{city} checking in. 2 weeks in and I already put in my two weeks notice at work", time: "Just now" },
+            { name: "Jana Lang", initials: "JL", color: "#a855f7", text: "How long is this going to be up?? I need my sister and my mom to see this before it's gone", time: "Just now" },
+            { name: "Torben Clark", initials: "TC", color: "#06b6d4", text: "They keep trying to take this down. SHARE IT before it disappears", time: "Just now" },
+            { name: "Deborah Forster", initials: "DF", color: "#e41e3f", text: "Somebody screen record this NOW. They always take these down when too many people find out", time: "Just now" },
+            { name: "Yvonne Weidmann", initials: "YW", color: "#1877f2", text: "This won't be up much longer. It's way too good for them to let people see for free", time: "Just now" },
+            { name: "Stefan Palmowski", initials: "SP", color: "#45bd62", text: "I'm literally crying right now. $387 in my first week. I've never made that much at my JOB in a week", time: "Just now" },
+            { name: "Nina Coleman", initials: "NC", color: "#f7b928", text: "Started 3 days ago and already seeing $104. I thought this was another scam but WOW", time: "Just now" },
+            { name: "Sandra Tucholsky", initials: "ST", color: "#a855f7", text: "My husband just looked at my phone and asked why I was crying. I showed him the deposit notification. $561 in 11 days.", time: "Just now" },
+            { name: "Carola Jensen", initials: "CJ", color: "#06b6d4", text: "2 months in now. Averaging $310 to $420 per day. I quit my nursing job last Tuesday.", time: "Just now" }
+        ];
+
+        let commentIndex = 0;
+        const container = document.getElementById('comments-container');
+
+        // Show first 4 immediately
+        for (let i = 0; i < 4; i++) {
+            addComment(allComments[i], false);
+            commentIndex++;
+        }
+
+        function addComment(comment, animate) {
+            const div = document.createElement('div');
+            div.className = 'fb-comment-item' + (animate ? ' new-comment' : '');
+            div.innerHTML = `
+                <div class="fb-comment-avatar-initials" style="background:${comment.color}">${comment.initials}</div>
+                <div class="fb-comment-content">
+                    <div class="fb-comment-bubble-live">
+                        <span class="fb-comment-name">${comment.name}</span>
+                        <span class="fb-comment-text">${comment.text}</span>
+                    </div>
+                    <div class="fb-comment-actions">
+                        <span class="fb-comment-action">Like</span>
+                        <span class="fb-comment-action">Reply</span>
+                        <span class="fb-comment-time">${comment.time}</span>
+                    </div>
+                </div>
+            `;
+            container.insertBefore(div, container.firstChild);
+        }
+
+        // Add new comments every 8-15 seconds, stop at 60 total
+        function scheduleNextComment() {
+            if (commentIndex >= 60) return; // Stop at 60
+            const delay = 8000 + Math.random() * 7000;
+            setTimeout(() => {
+                if (commentIndex < allComments.length) {
+                    addComment(allComments[commentIndex], true);
+                    commentIndex++;
+                }
+                scheduleNextComment();
+            }, delay);
+        }
+        scheduleNextComment();
+    </script>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // "Get Access Now"-Button-Overlay + Kauf-Popups (Social Proof)
+        // ═══════════════════════════════════════════════════════════════
+
+        // Zeitpunkt, zu dem Button & Kauf-Popups normalerweise erscheinen
+        // (identisch zum bestehenden Angebots-Timer weiter oben: 1089000ms = 18:09 Min)
+        const OFFER_DROP_TIME = 1089000;
+
+        // Video-Gesamtlänge: 41:04 Min
+        const VIDEO_TOTAL_TIME = (41 * 60 + 4) * 1000; // 2464000ms
+
+        // Zeitfenster, in dem die Kauf-Popups nach dem Drop verteilt werden
+        const POPUP_WINDOW = VIDEO_TOTAL_TIME - OFFER_DROP_TIME;
+
+        // Anzahl der Kauf-Popups (50-100)
+        const POPUP_COUNT = 75;
+
+        // Testmodus: bei ?showoffer=1 erscheint alles sofort, statt erst nach OFFER_DROP_TIME zu warten
+        const urlParamsForDrop = new URLSearchParams(window.location.search);
+        const isTestMode = urlParamsForDrop.get('showoffer') === '1';
+        const dropDelay = isTestMode ? 0 : OFFER_DROP_TIME;
+
+        // 100 einzigartige deutsche Namen (Vorname + Nachnamen-Anfangsbuchstabe), keine Wiederholung
+        const purchaseNames = [
+            "Markus P.", "Sabine K.", "Thomas W.", "Julia B.", "Stefan H.",
+            "Nina R.", "Andreas S.", "Claudia M.", "Michael F.", "Petra L.",
+            "Frank G.", "Sandra T.", "Christian N.", "Katrin D.", "Jürgen Z.",
+            "Anja V.", "Wolfgang E.", "Susanne O.", "Dirk J.", "Melanie A.",
+            "Rainer K.", "Kerstin W.", "Holger B.", "Jana S.", "Torsten H.",
+            "Nadine M.", "Uwe R.", "Simone F.", "Manfred G.", "Doris L.",
+            "Bernd T.", "Karin P.", "Ralf N.", "Silke D.", "Klaus V.",
+            "Monika C.", "Peter Z.", "Birgit A.", "Jörg E.", "Angelika O.",
+            "Matthias J.", "Heike W.", "Norbert B.", "Ute K.", "Volker S.",
+            "Christine H.", "Detlef M.", "Renate F.", "Werner G.", "Ingrid R.",
+            "Achim T.", "Gabriele N.", "Hartmut D.", "Elke V.", "Günther E.",
+            "Marion Z.", "Helmut A.", "Brigitte O.", "Dieter J.", "Ursula W.",
+            "Reinhard B.", "Waltraud K.", "Siegfried S.", "Christa H.", "Lothar M.",
+            "Edith F.", "Horst G.", "Erika R.", "Gerhard T.", "Hildegard L.",
+            "Kurt P.", "Gisela N.", "Herbert D.", "Traudel V.", "Alfred C.",
+            "Rosemarie Z.", "Wilhelm E.", "Irmgard A.", "Karl-Heinz O.", "Annemarie J.",
+            "Bernhard W.", "Marianne B.", "Ottmar K.", "Sigrid S.", "Reinhold H.",
+            "Roswitha M.", "Dietmar F.", "Ingeborg G.", "Bodo T.", "Elfriede R.",
+            "Rüdiger N.", "Gudrun D.", "Wolf-Dieter V.", "Cornelia S.", "Burkhard H.",
+            "Heidemarie K.", "Egon L.", "Traute P.", "Roland M.", "Gertrud W."
+        ];
+
+        // Fisher-Yates Shuffle, damit die Reihenfolge bei jedem Seitenaufruf variiert
+        function shuffleArray(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function scrollToOffer() {
+            const offerEl = document.getElementById('offer-section');
+            if (offerEl) offerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showSecureButton() {
+            const btn = document.getElementById('secure-button-overlay');
+            if (btn) btn.style.display = 'flex';
+        }
+
+        function spawnPurchasePopup(name) {
+            const el = document.createElement('div');
+            el.className = 'purchase-popup';
+            el.innerHTML = `
+                <div class="purchase-popup-icon">✅</div>
+                <div class="purchase-popup-text"><strong>${name}</strong> purchased the Pocket-Sized ATM</div>
+            `;
+            document.body.appendChild(el);
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => el.classList.add('show'));
+            });
+            setTimeout(() => {
+                el.classList.remove('show');
+                setTimeout(() => el.remove(), 500);
+            }, 4500);
+        }
+
+        function startPurchasePopups() {
+            const names = shuffleArray(purchaseNames).slice(0, POPUP_COUNT);
+            const avgGap = POPUP_WINDOW / POPUP_COUNT;
+            let elapsed = 0;
+            names.forEach((name) => {
+                // Zufällige Streuung um den Durchschnittsabstand, damit es nicht getaktet wirkt
+                elapsed += avgGap * (0.4 + Math.random() * 1.2);
+                setTimeout(() => spawnPurchasePopup(name), elapsed);
+            });
+        }
+
+        setTimeout(() => {
+            showSecureButton();
+            startPurchasePopups();
+        }, dropDelay);
+    </script>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"c4ae4efcd666400eb10e36884ae74d02","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
-<!-- total render time 4ms -->
