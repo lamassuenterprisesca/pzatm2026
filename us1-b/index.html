@@ -91,7 +91,21 @@
       as="style"
       onload="this.rel='stylesheet'"
     />
-  </head>
+  
+<style>
+@media (min-width: 1024px) {
+  #offer > div {
+    width: 75% !important;
+    max-width: 788px !important;
+  }
+  #offer .bg-upsell-ivory {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+</style>
+
+</head>
 
   <body
     class="relative font-sans h-100 m-0 p-0"
@@ -303,57 +317,50 @@
           </div>
 
           <div
-            class="relative bg-upsell-ivory border-2 border-upsell-buttercream rounded-lg mt-24 w-full"
-            :class="'h-[540px] lg:h-[700px]'"
+            class="bg-upsell-ivory border-2 border-upsell-buttercream rounded-lg mt-16 lg:mt-20 w-full px-4 lg:px-8 pt-8 lg:pt-10 pb-10"
           >
-            <div class="flex justify-center items-center w-full">
-              <div class="absolute lg:-top-20 -top-8">
-                <div>
-                  <img src="/images/algo-update-laptop.png" alt="algorithm update laptop" />
-                </div>
-              </div>
-              <div class="absolute top-40 lg:top-24">
-                <div class="lg:mt-56 mt-24 flex items-center justify-center font-serif text-xl tracking-wide gap-4">
-                  <div class="tracking-wider">
-                    Original Price:
-                    <span class="relative inline-block"
-                      >$997+$297/mo
-                      <span
-                        class="absolute left-0 right-0 border-b-2 border-red-500 rotate-[-10deg]"
-                        style="top: 50%; transform: translateY(-50%)"
-                      ></span
-                    ></span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-center lg:mt-6">
-                  <div>
-                    <img
-                      class="mb-6 w-[65px] lg:w-auto mt-4 lg:mt-0"
-                      alt="left call out arrow"
-                      src="/images/left_arrow.png"
-                    />
-                  </div>
-                  <div>
-                    <div class="font-serif text-2xl font-bold text-center">
-                      <div class="mt-6 lg:mt-0">Today Just For</div>
-                    </div>
-                    <div class="font-serif text-[71px] font-bold text-center -mt-3 text-upsell-teal">$197</div>
-                  </div>
-                  <div>
-                    <img
-                      class="mb-6 w-[65px] lg:w-auto mt-4 lg:mt-0"
-                      alt="right call out arrow"
-                      src="/images/right_arrow.png"
-                    />
-                  </div>
-                </div>
+            <div class="flex flex-col items-center justify-center w-full">
 
-                <div class="flex items-center justify-center px-2 lg:px-28">
-                  <a href="https://www.digistore24.com/answer/yes?template=light">
-                    <img class="lg:w-[724px] w-[300px]" alt="activate now button" src="/images/activate-button.png"
-                  /></a>
+              <div class="w-full flex items-center justify-center">
+                <img
+                  src="/images/algo-update-laptop.png"
+                  alt="algorithm update laptop"
+                  class="block w-full max-w-[720px] h-auto object-contain"
+                />
+              </div>
+
+              <div class="mt-5 lg:mt-7 flex items-center justify-center font-serif text-xl tracking-wide gap-4 text-center">
+                <div class="tracking-wider">
+                  Original Price:
+                  <span class="relative inline-block">
+                    $997+$297/mo
+                    <span
+                      class="absolute left-0 right-0 border-b-2 border-red-500 rotate-[-10deg]"
+                      style="top: 50%; transform: translateY(-50%)"
+                    ></span>
+                  </span>
                 </div>
               </div>
+
+              <div class="flex items-center justify-center mt-5 lg:mt-6 gap-2 lg:gap-5">
+                <div>
+                  <img class="w-[50px] lg:w-[80px]" alt="left call out arrow" src="/images/left_arrow.png" />
+                </div>
+                <div>
+                  <div class="font-serif text-2xl font-bold text-center">Today Just For</div>
+                  <div class="font-serif text-[71px] leading-none font-bold text-center text-upsell-teal mt-1">$197</div>
+                </div>
+                <div>
+                  <img class="w-[50px] lg:w-[80px]" alt="right call out arrow" src="/images/right_arrow.png" />
+                </div>
+              </div>
+
+              <div class="flex items-center justify-center px-2 lg:px-16 mt-5 w-full">
+                <a href="https://www.digistore24.com/answer/yes?template=light" class="block w-full max-w-[724px]">
+                  <img class="block w-full h-auto" alt="activate now button" src="/images/activate-button.png" />
+                </a>
+              </div>
+
             </div>
           </div>
           <div class="mt-10 flex justify-center items-center mb-16">
