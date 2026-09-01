@@ -1,249 +1,493 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>The Algorithm Update — Special Upgrade Option</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Algorithm Update | Digital Training Program</title>
 
-<script>
-(function () {
-  const params = new URLSearchParams(window.location.search);
-  const host = window.location.hostname.toLowerCase();
-  const isPreview =
-    window.location.protocol === "file:" ||
-    host === "localhost" ||
-    host === "127.0.0.1" ||
-    host.includes("chatgpt") ||
-    host.includes("openai") ||
-    host.includes("sandbox");
 
-  if (!isPreview && params.get("pz") !== "vdrd") {
-    window.location.replace("index-c.html");
-  }
-})();
-</script>
+  <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+  <script type="text/javascript">
+    digistorePromocode({ "product_id": 728417, "adjust_domain": true });
+  </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7f6;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    .wrap { width: min(960px, calc(100% - 32px)); margin: 0 auto; }
+    header {
+      background: #0f5132;
+      color: #fff;
+      padding: 18px 0;
+    }
+    header .brand { font-size: 22px; font-weight: 800; }
+    .hero {
+      background: #fff;
+      padding: 56px 0 44px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.08; margin: 0 0 18px; }
+    h2 { font-size: 28px; margin-top: 0; }
+    .sub { font-size: 19px; color: #4b5563; max-width: 760px; }
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 28px;
+      margin: 28px 0;
+    }
+    .price-box {
+      background: #eef8f2;
+      border: 1px solid #cce9d8;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 28px;
+    }
+    .price { font-size: 46px; font-weight: 800; color: #0f5132; margin: 4px 0; }
+    .small { font-size: 14px; color: #6b7280; }
+    .cta {
+      display: inline-block;
+      margin-top: 14px;
+      background: #16834f;
+      color: white;
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 800;
+      padding: 15px 28px;
+      border-radius: 9px;
+    }
+    ul { padding-left: 22px; }
+    .notice {
+      background: #fff8e8;
+      border: 1px solid #f4d58d;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 22px 0;
+    }
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      padding: 34px 0;
+      margin-top: 48px;
+      font-size: 13px;
+    }
+    footer a { color: #fff; }
+    .legal { font-size: 13px; color: #4b5563; }
+    .trust-placeholder {
+      border: 2px dashed #9ca3af;
+      padding: 18px;
+      text-align: center;
+      color: #6b7280;
+      margin: 24px 0;
+      background: #fafafa;
+    }
+  
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap: 36px;
+      align-items: center;
+    }
 
-<style>
-:root{
-  --bg:#06110d;--panel:#0a1913;--text:#f4fff8;--muted:#9db8aa;
-  --green:#35f28b;--green2:#8bffbe;--line:rgba(120,255,181,.18)
-}
-*{box-sizing:border-box}
-body{
-  margin:0;color:var(--text);font-family:Inter,system-ui,sans-serif;
-  background:
-    radial-gradient(circle at 15% 10%,rgba(53,242,139,.14),transparent 32%),
-    radial-gradient(circle at 85% 20%,rgba(53,242,139,.08),transparent 28%),
-    linear-gradient(180deg,#06110d 0%,#07140f 45%,#040b08 100%);
-  min-height:100vh
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:34px 34px
-}
-.wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
-.topbar{
-  border-bottom:1px solid var(--line);background:rgba(3,10,7,.78);
-  backdrop-filter:blur(14px);position:sticky;top:0;z-index:20
-}
-.topbar-inner{
-  min-height:58px;display:flex;align-items:center;justify-content:center;
-  text-align:center;font-size:14px;font-weight:700
-}
-.topbar b{color:var(--green2)}
-.hero{padding:66px 0 28px}
-.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:34px;align-items:center}
-.eyebrow{
-  display:inline-flex;gap:9px;align-items:center;padding:8px 12px;border:1px solid rgba(53,242,139,.25);
-  background:rgba(53,242,139,.075);border-radius:999px;color:#bfffd9;font-weight:800;font-size:12px;
-  letter-spacing:.12em;text-transform:uppercase
-}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 18px rgba(53,242,139,.9)}
-h1{
-  font-family:"Space Grotesk",Inter,sans-serif;font-size:clamp(44px,7vw,84px);line-height:.98;
-  letter-spacing:-.055em;margin:22px 0 20px;max-width:950px
-}
-.accent{color:var(--green2)}
-.sub{max-width:780px;font-size:clamp(18px,2vw,23px);line-height:1.6;color:#c7dbcf;margin:0 0 28px}
-.visual{
-  position:relative;min-height:470px;border:1px solid var(--line);border-radius:28px;
-  background:linear-gradient(145deg,rgba(53,242,139,.11),rgba(53,242,139,.02) 40%,rgba(255,255,255,.015)),#07130e;
-  overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.34)
-}
-.visual:before{
-  content:"";position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(0deg,transparent,transparent 26px,rgba(83,255,155,.04) 27px),
-    repeating-linear-gradient(90deg,transparent,transparent 26px,rgba(83,255,155,.04) 27px)
-}
-.orb{
-  position:absolute;inset:50% auto auto 50%;width:260px;height:260px;transform:translate(-50%,-50%);
-  border-radius:50%;border:1px solid rgba(94,255,164,.35);
-  box-shadow:0 0 0 38px rgba(53,242,139,.035),0 0 0 82px rgba(53,242,139,.025),0 0 80px rgba(53,242,139,.14);
-  display:flex;align-items:center;justify-content:center
-}
-.algo-icon{
-  width:110px;height:110px;border-radius:24px;background:linear-gradient(145deg,#38f18d,#146b43);
-  color:#03120b;display:grid;place-items:center;font-family:"Space Grotesk";font-size:52px;font-weight:700;
-  transform:rotate(-6deg);box-shadow:0 18px 55px rgba(53,242,139,.32);z-index:2
-}
-.visual-label{
-  position:absolute;left:26px;bottom:26px;right:26px;padding:18px;border:1px solid var(--line);
-  border-radius:18px;background:rgba(2,10,6,.66);backdrop-filter:blur(10px)
-}
-.visual-label small{display:block;color:var(--green2);font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
-.visual-label strong{font-family:"Space Grotesk";font-size:26px}
-.offer{
-  margin-top:28px;border:1px solid rgba(53,242,139,.24);
-  background:linear-gradient(180deg,rgba(20,56,40,.8),rgba(8,27,19,.9));
-  border-radius:26px;padding:28px;box-shadow:0 30px 70px rgba(0,0,0,.28)
-}
-.offer-label{color:#b9d5c5;text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:800}
-.price{display:flex;align-items:flex-end;gap:12px;margin:8px 0 4px}
-.price .now{font-family:"Space Grotesk";font-size:72px;font-weight:700;letter-spacing:-.06em;line-height:1}
-.price .was{color:#89a194;font-size:20px;text-decoration:line-through;padding-bottom:9px}
-.billing{color:#b9d5c5;font-size:14px;margin-bottom:20px}
-.cta{
-  display:flex;width:100%;align-items:center;justify-content:center;padding:18px 22px;min-height:64px;
-  border-radius:16px;border:1px solid rgba(165,255,204,.5);
-  background:linear-gradient(180deg,#52f69b,#28c975);color:#04130c;text-decoration:none;
-  font-weight:900;font-size:18px;box-shadow:0 14px 35px rgba(53,242,139,.18)
-}
-.cta:hover{transform:translateY(-2px)}
-.decline{text-align:center;margin-top:14px;font-size:13px}
-.decline a{color:#8ea89a;text-decoration:underline}
-.proofline{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.proof{border:1px solid var(--line);background:rgba(255,255,255,.018);border-radius:14px;padding:13px;color:#c7dacd;font-size:12px;text-align:center;font-weight:700}
-.section{padding:54px 0}
-.section-title{font-family:"Space Grotesk";font-size:clamp(32px,4vw,54px);letter-spacing:-.045em;margin:0 0 12px}
-.section-copy{color:#abc1b4;font-size:18px;line-height:1.7;max-width:820px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
-.card{border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:20px;padding:22px}
-.card-icon{
-  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(53,242,139,.12);
-  border:1px solid rgba(53,242,139,.22);color:var(--green2);font-weight:900;margin-bottom:18px
-}
-.card h3{margin:0 0 8px;font-family:"Space Grotesk";font-size:21px}
-.card p{margin:0;color:#9eb4a7;line-height:1.65;font-size:14px}
-.compare{border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:28px;background:#07130e}
-.row{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;padding:17px 22px;border-top:1px solid rgba(255,255,255,.05)}
-.row:first-child{border-top:0}.row div:last-child{text-align:right;color:#d7eee0;font-weight:700}.row div:first-child{color:#91a99c}
-.final{
-  margin:54px auto 72px;border:1px solid rgba(53,242,139,.26);
-  background:radial-gradient(circle at 50% -10%,rgba(53,242,139,.16),transparent 45%),linear-gradient(180deg,#0c2118,#07130e);
-  border-radius:28px;padding:42px;text-align:center;box-shadow:0 35px 100px rgba(0,0,0,.35)
-}
-.final h2{margin:0 auto 12px;font-family:"Space Grotesk";font-size:clamp(34px,5vw,58px);letter-spacing:-.05em;max-width:800px}
-.final p{color:#a9c0b2;max-width:740px;margin:0 auto 26px;line-height:1.7}
-.final .cta{max-width:650px;margin:0 auto}
-.fine{margin:18px auto 0;max-width:800px;color:#718b7c;font-size:11px;line-height:1.6}
-footer{border-top:1px solid var(--line);color:#738c7d;padding:28px 0 40px;text-align:center;font-size:12px}
-@media(max-width:860px){
-  .hero{padding-top:40px}.hero-grid{grid-template-columns:1fr}.visual{min-height:390px;order:-1}
-  .cards{grid-template-columns:1fr}.proofline{grid-template-columns:1fr}.row{grid-template-columns:1fr}
-  .row div:last-child{text-align:left}.final{padding:30px 20px}.price .now{font-size:62px}
-}
-</style>
+    .product-visual {
+      background:
+        radial-gradient(circle at 50% 15%, rgba(22,131,79,.16), transparent 40%),
+        linear-gradient(180deg, #fbfdfc 0%, #eef7f1 100%);
+      border: 1px solid #d9e7de;
+      border-radius: 18px;
+      padding: 26px;
+      text-align: center;
+    }
+
+    .product-visual img {
+      display: block;
+      width: min(100%, 390px);
+      max-height: 430px;
+      object-fit: contain;
+      margin: 0 auto;
+      filter: drop-shadow(0 22px 28px rgba(0,0,0,.16));
+    }
+
+    .product-caption {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #667085;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0 0;
+    }
+
+    .trust-item {
+      background: #f9fbfa;
+      border: 1px solid #e2e9e5;
+      border-radius: 10px;
+      padding: 13px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #34443a;
+    }
+
+    .section-kicker {
+      color: #16834f;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .faq-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px;
+      background: #fafcfb;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #183a29;
+    }
+
+    .compliance-note {
+      border-left: 4px solid #16834f;
+      background: #f2fbf6;
+      padding: 16px 18px;
+      margin-top: 18px;
+      font-size: 14px;
+      color: #42564a;
+    }
+
+    .checkout-note {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #667085;
+    }
+
+    @media (max-width: 760px) {
+      .hero-grid,
+      .faq-grid,
+      .trust-row {
+        grid-template-columns: 1fr;
+      }
+
+      .product-visual {
+        order: -1;
+      }
+    }
+
+  
+    .algorithm-cover {
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(51, 214, 122, .22), transparent 30%),
+        linear-gradient(145deg, #071d12 0%, #0b3822 55%, #07160f 100%);
+      border: 1px solid #2c714b;
+      box-shadow: inset 0 0 50px rgba(31, 200, 105, .09);
+    }
+
+    .algorithm-cover::before,
+    .algorithm-cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .algorithm-cover::before {
+      background-image:
+        linear-gradient(rgba(67, 219, 135, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(67, 219, 135, .07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .algorithm-cover::after {
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.07) 50%, transparent 70%);
+      transform: translateX(-100%);
+      animation: coverSweep 5s ease-in-out infinite;
+    }
+
+    @keyframes coverSweep {
+      0%, 65% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .algo-icon {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(90, 235, 154, .55);
+      background: rgba(42, 188, 108, .12);
+      color: #6af0a4;
+      font-size: 38px;
+      line-height: 1;
+      margin-bottom: 20px;
+      box-shadow: 0 0 30px rgba(50, 220, 126, .14);
+      position: relative;
+      z-index: 1;
+    }
+
+    .algo-eyebrow {
+      position: relative;
+      z-index: 1;
+      color: #68e99f;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .22em;
+      margin-bottom: 9px;
+    }
+
+    .algo-title {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: .95;
+      letter-spacing: -.04em;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .algo-subtitle {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      padding: 7px 14px;
+      border: 1px solid rgba(111, 236, 164, .32);
+      border-radius: 999px;
+      color: #bcebcf;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+  </style>
 </head>
 <body>
-<div class="topbar">
-  <div class="wrap topbar-inner">Special upgrade option for <b>&nbsp;Pocket-Sized ATM customers</b></div>
-</div>
 
-<main>
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow"><span class="dot"></span> Reduced-Price Upgrade Option</div>
-      <h1>Get <span class="accent">The Algorithm Update</span> for less.</h1>
-      <p class="sub">
-        Add the advanced Pocket-Sized ATM training focused on social media recommendation systems,
-        content distribution, testing, and optimization.
-      </p>
-
-      <div class="offer">
-        <div class="offer-label">One-Time Downsell Price</div>
-        <div class="price"><div class="now">$67</div><div class="was">$97</div></div>
-        <div class="billing">One-time payment • No recurring subscription</div>
-
-        <a class="cta" href="https://www.digistore24.com/answer/yes?template=light">
-          YES — ADD THE ALGORITHM UPDATE FOR $67
-        </a>
-
-        <div class="decline">
-          <a href="https://www.digistore24.com/answer/no">No thanks — continue without this upgrade</a>
-        </div>
-
-        <div class="proofline">
-          <div class="proof">Digital Access</div>
-          <div class="proof">Pocket-Sized ATM Upgrade</div>
-          <div class="proof">No Recurring Billing</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="visual">
-      <div class="orb"><div class="algo-icon">↻</div></div>
-      <div class="visual-label">
-        <small>Pocket-Sized ATM Upgrade</small>
-        <strong>The Algorithm Update</strong>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
+<header>
   <div class="wrap">
-    <h2 class="section-title">What this upgrade adds</h2>
-    <p class="section-copy">
-      The Algorithm Update builds on the core Pocket-Sized ATM training with additional education
-      about how content may be ranked, recommended, distributed, and tested across social platforms.
-    </p>
+    <div class="brand">The Algorithm Update</div>
+  </div>
+</header>
 
-    <div class="cards">
-      <div class="card"><div class="card-icon">01</div><h3>Understand Distribution</h3><p>Learn general concepts behind recommendation systems, content reach, visibility, and audience discovery.</p></div>
-      <div class="card"><div class="card-icon">02</div><h3>Test Smarter</h3><p>Use structured testing concepts to compare topics, formats, hooks, publishing choices, and audience response.</p></div>
-      <div class="card"><div class="card-icon">03</div><h3>Optimize Decisions</h3><p>Use performance signals as feedback so you can make more informed content and marketing decisions over time.</p></div>
-    </div>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="section-kicker">Advanced Pocket-Sized ATM Upgrade</div>
+        <h1>The Algorithm Update</h1>
+        <p class="sub">
+          The Algorithm Update is a digital educational training program delivered through a private online
+          members area. It includes a welcome lesson and six training modules covering online-business
+          and digital-marketing concepts in a structured, step-by-step format.
+        </p>
 
-    <div class="compare">
-      <div class="row"><div>Product</div><div>The Algorithm Update</div></div>
-      <div class="row"><div>Relationship</div><div>Optional Pocket-Sized ATM Upgrade</div></div>
-      <div class="row"><div>Delivery</div><div>Digital Access</div></div>
-      <div class="row"><div>Billing</div><div>$67 One-Time Payment</div></div>
-      <div class="row"><div>Recurring Subscription</div><div>None</div></div>
-    </div>
+        <div class="trust-row">
+          <div class="trust-item">Digital Product</div>
+          <div class="trust-item">One-Time Payment</div>
+          <div class="trust-item">60-Day Return Period</div>
+        </div>
 
-    <div class="final">
-      <div class="eyebrow"><span class="dot"></span> Upgrade Option</div>
-      <h2>Keep the core system. Add the algorithm training.</h2>
-      <p>Add The Algorithm Update to your Pocket-Sized ATM training for the reduced one-time price shown on this page.</p>
-
-      <a class="cta" href="https://www.digistore24.com/answer/yes?template=light">
-        GET THE ALGORITHM UPDATE FOR $67
-      </a>
-
-      <div class="decline">
-        <a href="https://www.digistore24.com/answer/no">No thanks — continue without this upgrade</a>
+        <div class="price-box">
+          <div>One-time purchase</div>
+          <div class="price">$197</div>
+          <div>No recurring subscription.</div>
+          <a class="cta" href="https://www.digistore24.com/product/728417">Get Access</a>
+          <div class="checkout-note">Payment and order processing are handled securely by Digistore24.</div>
+        </div>
       </div>
 
-      <div class="fine">
-        The Algorithm Update is an educational product. It does not guarantee views, reach, traffic,
-        engagement, audience growth, platform placement, income, profits, or any other specific result.
-        Social media platforms control their own algorithms and may change them at any time. Individual results vary.
+      <div class="product-visual algorithm-cover" aria-label="The Algorithm Update product graphic">
+        <div class="algo-icon">↻</div>
+        <div class="algo-eyebrow"></div>
+        <div class="algo-title">THE<br>ALGORITHM<br>UPDATE</div>
+        <div class="algo-subtitle">Advanced Training Upgrade</div>
       </div>
     </div>
   </div>
 </section>
+
+<main class="wrap">
+  <section class="card">
+    <h2>What you receive</h2>
+    <ul>
+      <li>Access to the The Algorithm Update online members area.</li>
+      <li>Digital educational material focused on online-business and marketing concepts.</li>
+      <li>Structured lessons available through a private online members area.</li>
+      <li>On-demand access to the training through your web browser.</li>
+      <li>Educational materials intended for personal learning and implementation.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <div class="section-kicker">Pocket-Sized ATM Upgrade</div>
+    <h2>How The Algorithm Update fits with Pocket-Sized ATM</h2>
+    <p>
+      The Algorithm Update is designed as an optional advanced upgrade for customers who already have
+      Pocket-Sized ATM. The core Pocket-Sized ATM program introduces the underlying online-business
+      training, while The Algorithm Update focuses more specifically on how social platforms may rank,
+      recommend, and distribute content.
+    </p>
+    <p>
+      The goal is to help users better understand the signals that can influence content performance so
+      they can make more informed decisions about topics, formats, publishing, testing, and optimization.
+      It does not provide guaranteed placement, guaranteed reach, guaranteed traffic, or guaranteed income.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>How the product is delivered</h2>
+    <p>
+      This is a digital product. No physical item will be shipped. Following a successful purchase,
+      customers receive electronic access instructions for the private online members area, where the
+      training videos and course material can be viewed through a web browser.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>60-day refund policy</h2>
+    <p>
+      This product is offered with a 60-day return period. Requests must be made within
+      60 days of purchase and are handled according to the refund and return terms displayed
+      on the Digistore24 order form.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Important earnings disclaimer</h2>
+    <div class="notice">
+      The Algorithm Update is an educational product only. It does not guarantee income, profits,
+      business success, traffic, audience growth, content reach, engagement, platform placement, or any
+      specific financial or marketing result. Social media platforms control their own algorithms and
+      distribution systems, and those systems can change at any time. Individual results vary based on
+      factors such as content quality, niche, audience, platform behavior, market conditions, implementation,
+      testing, experience, and other circumstances. Some customers may see no measurable improvement or
+      earn no money at all.
+    </div>
+    <p class="legal">
+      Any examples, illustrations, or discussions of potential business outcomes are for educational
+      purposes only and should not be interpreted as a promise or guarantee of future earnings.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Who this is for</h2>
+    <p>
+      The Algorithm Update is intended for adults who want additional educational material about online
+      business, content distribution, and digital marketing after purchasing Pocket-Sized ATM. It is not
+      financial, investment, legal, tax, employment, or platform-policy advice.
+    </p>
+    <p class="legal">
+      Pocket-Sized ATM and The Algorithm Update are independent educational products and are not endorsed,
+      sponsored, approved, or operated by Meta, Facebook, Instagram, TikTok, YouTube, Google, X, or any
+      other social media platform. Platform names, if referenced, are used only to describe the subject
+      matter of the training.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>What this training does not promise</h2>
+    <p>
+      Purchasing The Algorithm Update does not provide special access to any social media platform,
+      private platform data, hidden platform controls, or guaranteed algorithmic preference. The material
+      explains general educational concepts and practical testing approaches that may help users better
+      understand and respond to publicly observable platform behavior.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Support</h2>
+    <p>
+      If you have questions about product access or delivery, please contact the support address
+      listed on the Digistore24 order confirmation or your product-access email.
+    </p>
+  </section>
+
+  <section class="card">
+    <div class="section-kicker">Purchase Information</div>
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <strong>Is this a physical product?</strong>
+        No. The Algorithm Update is delivered digitally through an online members area.
+      </div>
+
+      <div class="faq-item">
+        <strong>Is this a subscription?</strong>
+        No. The advertised price on this page is a one-time payment of $197.
+      </div>
+
+      <div class="faq-item">
+        <strong>Is this the same as Pocket-Sized ATM?</strong>
+        No. The Algorithm Update is a separate optional upgrade that builds on the core Pocket-Sized ATM training.
+      </div>
+
+      <div class="faq-item">
+        <strong>What do I receive?</strong>
+        Access to a welcome lesson and six digital training modules inside the The Algorithm Update members area.
+      </div>
+
+      <div class="faq-item">
+        <strong>Does this guarantee more views, traffic, or income?</strong>
+        No. The training is educational only. It does not guarantee reach, traffic, engagement, audience
+        growth, revenue, or any other specific result.
+      </div>
+    </div>
+
+    <div class="compliance-note">
+      Before submitting this page for approval, make sure the $197 price, one-time billing model, 60-day return period, digital delivery, upgrade positioning, and checkout URL exactly match Product 728417 settings in your Digistore24 account.
+    </div>
+  </section>
+
+  <!-- Begin of Digistore24 Trusted Badge Code -->
+  <script type="text/javascript" src="https://www.digistore24.com/trusted-badge/47692/h9Oyy6UVROVbWxO/salespage"></script>
+  <!-- End of Digistore24 Trusted Badge Code -->
+
+  <section class="price-box">
+    <h2>Get The Algorithm Update</h2>
+    <div class="price">$197</div>
+    <div>One-time payment • Digital delivery • Optional Pocket-Sized ATM upgrade • No recurring subscription • 60-day return period</div>
+    <a class="cta" href="https://www.digistore24.com/product/728417">Get Access</a>
+  </section>
+
+
 </main>
 
-<footer>© 2026 Pocket-Sized ATM. All Rights Reserved.</footer>
+<footer>
+  <div class="wrap">
+    <strong>The Algorithm Update</strong><br><br>
+    This website provides educational information only. No earnings are guaranteed.<br><br>
+    Digistore24 acts as the reseller and processes the transaction through its secure order form.
+  </div>
+</footer>
+
 </body>
 </html>
