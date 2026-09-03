@@ -1017,5 +1017,27 @@
     </script>
 
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"c4ae4efcd666400eb10e36884ae74d02","r":1}' crossorigin="anonymous"></script>
+
+<script>
+(function () {
+  const currentParams = new URLSearchParams(window.location.search);
+  if (!currentParams.toString()) return;
+
+  document.querySelectorAll('a[href]').forEach(function (link) {
+    try {
+      const url = new URL(link.href, window.location.origin);
+
+      currentParams.forEach((value, key) => {
+        if (!url.searchParams.has(key)) {
+          url.searchParams.set(key, value);
+        }
+      });
+
+      link.href = url.toString();
+    } catch (e) {}
+  });
+})();
+</script>
+
 </body>
 </html>
