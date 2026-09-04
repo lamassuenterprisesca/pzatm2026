@@ -986,6 +986,44 @@
       z-index: 9999;
     }
 
+
+    .digistore-notice {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      background: linear-gradient(90deg, rgba(5,24,12,0.98), rgba(10,42,22,0.98), rgba(5,24,12,0.98));
+      border-bottom: 1px solid rgba(74,222,128,0.18);
+      color: #a7c9b3;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.045em;
+      box-shadow: inset 0 -1px 0 rgba(74,222,128,0.04);
+    }
+    .digistore-notice::before {
+      content: "✓";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(74,222,128,0.22);
+      color: #6ee7a2;
+      font-size: 10px;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+    .digistore-notice strong { color: #dfffea; font-weight: 700; }
+    @media (max-width: 720px) {
+      .digistore-notice { padding: 8px 12px; font-size: 10px; letter-spacing: 0.025em; }
+    }
+
   </style>
 </head>
 <body>
@@ -1013,6 +1051,8 @@
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
+
+  <div class="digistore-notice">Debit will be preformed by <strong>Digistore24</strong></div>
 
   <div class="topbar">POCKET-SIZED ATM • MEMBERS ACCESS</div>
 
