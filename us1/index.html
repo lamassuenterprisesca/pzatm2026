@@ -4,8 +4,24 @@
     <script>
       (function () {
         const params = new URLSearchParams(window.location.search);
+        const pz = params.get("pz");
 
-        if (params.get("pz") !== "vdrd") {
+        // If pz=vdrd is present in the URL, remember it for later pages
+        try {
+          if (pz === "vdrd") {
+            localStorage.setItem("pz", "vdrd");
+          }
+        } catch (e) {}
+
+        // Allow access if pz=vdrd is in the URL OR was previously saved
+        let savedPz = null;
+        try {
+          savedPz = localStorage.getItem("pz");
+        } catch (e) {}
+
+        const allowed = pz === "vdrd" || savedPz === "vdrd";
+
+        if (!allowed) {
           window.location.replace("index-c.html");
         }
       })();
