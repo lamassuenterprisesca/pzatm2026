@@ -249,5 +249,26 @@ footer{text-align:center;padding:25px;color:#777;font:11px Arial,sans-serif}
 })();
 </script>
 
+<script>
+(function () {
+  const currentParams = new URLSearchParams(window.location.search);
+  if (!currentParams.toString()) return;
+
+  document.querySelectorAll('a[href]').forEach(function (link) {
+    try {
+      const url = new URL(link.href, window.location.origin);
+
+      currentParams.forEach((value, key) => {
+        if (!url.searchParams.has(key)) {
+          url.searchParams.set(key, value);
+        }
+      });
+
+      link.href = url.toString();
+    } catch (e) {}
+  });
+})();
+</script>
+
 </body>
 </html>
