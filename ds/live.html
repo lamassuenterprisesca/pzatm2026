@@ -47,7 +47,7 @@
     </script>
     <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
     <script type="text/javascript">
-        digistorePromocode( { "product_id": 728398, "adjust_domain": true } );
+        digistorePromocode( { "product_id": 728417, "adjust_domain": true } );
     </script>
 
     <style>
@@ -1052,6 +1052,72 @@
 })();
 </script>
 
+
+
+<script>
+(function () {
+    const params = new URLSearchParams(window.location.search);
+
+    // Persist the important direct-tracking values so Digistore redirects/splits
+    // do not lose the affiliate attribution.
+    const persistKeys = ["aff", "pz"];
+
+    persistKeys.forEach(function (key) {
+        const value = params.get(key);
+        if (value) {
+            try {
+                localStorage.setItem(key, value);
+            } catch (e) {}
+        }
+    });
+
+    // Read URL first, then fall back to localStorage.
+    function getTrackingValue(key) {
+        const fromUrl = params.get(key);
+        if (fromUrl) return fromUrl;
+
+        try {
+            return localStorage.getItem(key);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    const aff = getTrackingValue("aff");
+    const pz = getTrackingValue("pz");
+
+    // Add affiliate/tracking params to every Digistore24 checkout link.
+    document.querySelectorAll('a[href*="checkout-ds24.com/product/"]').forEach(function (link) {
+        try {
+            const url = new URL(link.href);
+
+            if (aff) {
+                url.searchParams.set("aff", aff);
+            }
+
+            if (pz) {
+                url.searchParams.set("pz", pz);
+            }
+
+            // Preserve useful incoming attribution params as well.
+            params.forEach(function (value, key) {
+                if (
+                    key === "aff" ||
+                    key === "pz" ||
+                    key === "showoffer" ||
+                    key.startsWith("utm_") ||
+                    key === "tid" ||
+                    key === "subid"
+                ) {
+                    url.searchParams.set(key, value);
+                }
+            });
+
+            link.href = url.toString();
+        } catch (e) {}
+    });
+})();
+</script>
 
 </body>
 </html>
