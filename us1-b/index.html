@@ -4,8 +4,24 @@
     <script>
       (function () {
         const params = new URLSearchParams(window.location.search);
+        const pz = params.get("pz");
 
-        if (params.get("pz") !== "vdrd") {
+        // If pz=vdrd is present in the URL, remember it for later pages.
+        try {
+          if (pz === "vdrd") {
+            localStorage.setItem("pz", "vdrd");
+          }
+        } catch (e) {}
+
+        // Allow access if pz=vdrd is in the URL OR was previously saved.
+        let savedPz = null;
+        try {
+          savedPz = localStorage.getItem("pz");
+        } catch (e) {}
+
+        const allowed = pz === "vdrd" || savedPz === "vdrd";
+
+        if (!allowed) {
           window.location.replace("index-c.html");
         }
       })();
@@ -480,26 +496,7 @@
 })();
 </script>
 
-<script>
-(function () {
-  const currentParams = new URLSearchParams(window.location.search);
-  if (!currentParams.toString()) return;
 
-  document.querySelectorAll('a[href]').forEach(function (link) {
-    try {
-      const url = new URL(link.href, window.location.origin);
-
-      currentParams.forEach((value, key) => {
-        if (!url.searchParams.has(key)) {
-          url.searchParams.set(key, value);
-        }
-      });
-
-      link.href = url.toString();
-    } catch (e) {}
-  });
-})();
-</script>
 
 </body>
 </html>
