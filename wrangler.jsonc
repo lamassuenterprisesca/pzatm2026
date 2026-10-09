@@ -1,0 +1,6 @@
+{
+  // How Cloudflare publishes this site. Same settings as the live version (checked 2026-10-09).
+  "name": "pzatm2026",
+  "compatibility_date": "2026-09-15",
+  "assets": { "directory": "." }
+}
