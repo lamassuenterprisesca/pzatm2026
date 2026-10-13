@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="/css/styles.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocket-Sized ATM</title>
+    <link rel="preconnect" href="https://fast.wistia.com/" crossorigin />
+    <link rel="preconnect" href="https://embed-cloudfront.wistia.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+    <link rel="preload" as="image" href="/images/loading-video.gif" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans&display=swap" as="style" onload="this.rel='stylesheet'" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="apple-touch-icon.png" />
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !(function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+            if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+            t = b.createElement(e); t.async = !0; t.src = v;
+            s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+        fbq("init", "2023533435208488");
+        fbq("track", "PageView");
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2023533435208488&ev=PageView&noscript=1" /></noscript>
+
+    <script>
+        const redirectTo = "start";
+        const isUpsell = false;
+    </script>
+    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+    <script type="text/javascript">
+        digistorePromocode( { "product_id": 728417, "adjust_domain": true } );
+    </script>
+
+    <meta name="theme-color" content="#0f0f0f" />
+    <style>
+        /* ── Stream-style lander (v2) ─────────────────────────────────────
+           Looks like a video-platform watch page. Every element here is real:
+           the video genuinely starts on its own (muted), and the overlay
+           asks the viewer to turn the sound on. No viewer counters, no
+           scripted chat, no countdowns. */
+        [x-cloak] { display: none !important; }
+        * { box-sizing: border-box; }
+        html { background: #0f0f0f; }
+        body {
+            margin: 0;
+            background: #0f0f0f;
+            color: #f1f1f1;
+            font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sound-strip {
+            background: #c00;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 8px 12px;
+            line-height: 1.35;
+        }
+
+        .st-header {
+            background: #212121;
+            border-bottom: 1px solid #333;
+            height: 52px;
+        }
+        .st-header-inner {
+            max-width: 860px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .st-logo-box {
+            width: 32px; height: 22px; border-radius: 6px; background: #c00;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .st-logo-tri {
+            width: 0; height: 0; margin-left: 3px;
+            border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 12px solid #fff;
+        }
+        .st-brand { font-size: 17px; font-weight: 800; letter-spacing: -.02em; color: #fff; }
+        .st-now {
+            margin-left: auto;
+            display: none;               /* shown once the video is actually playing */
+            align-items: center; gap: 6px;
+            background: rgba(255,255,255,.08);
+            border-radius: 16px; padding: 5px 11px;
+            font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+        }
+        .st-now.on { display: flex; }
+        .st-now-dot { width: 7px; height: 7px; border-radius: 50%; background: #f33; animation: stBlink 1.2s infinite; }
+        @keyframes stBlink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+
+        .st-page { max-width: 860px; margin: 0 auto; }
+
+        /* Video sits at the very top of the screen on phones — no scrolling to find it */
+        .st-video { position: relative; background: #000; line-height: 0; }
+        /* Phones get the (tall) mobile cut at its own height; desktop stays 16:9 */
+        .st-video .wistia-wrapper { width: 100%; min-height: 56.25vw; }
+        @media (min-width: 768px) { .st-video .wistia-wrapper { aspect-ratio: 16/9; min-height: 0; } }
+        .st-video .wistia_embed { width: 100%; }
+
+        /* The play-rate lever: big, full-video tap target */
+        .st-overlay {
+            position: absolute; inset: 0; z-index: 15;
+            display: none;
+            flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+            background: rgba(0,0,0,.45);
+            cursor: pointer; text-align: center; padding: 16px;
+            -webkit-tap-highlight-color: transparent;
+            line-height: 1.25;
+        }
+        .st-overlay.on { display: flex; }
+        .st-ov-icon {
+            width: 96px; height: 96px; border-radius: 50%;
+            background: #c00; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 0 0 rgba(204,0,0,.6);
+            animation: stPulse 1.6s infinite;
+        }
+        .st-ov-icon svg { width: 48px; height: 48px; }
+        @keyframes stPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(204,0,0,.6); transform: scale(1); }
+            70%  { box-shadow: 0 0 0 22px rgba(204,0,0,0); transform: scale(1.05); }
+            100% { box-shadow: 0 0 0 0 rgba(204,0,0,0); transform: scale(1); }
+        }
+        .st-ov-top { font-size: 20px; font-weight: 800; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+        .st-ov-sub {
+            font-size: 16px; font-weight: 700; color: #111; background: #fff;
+            border-radius: 22px; padding: 8px 18px;
+        }
+        @media (max-width: 480px) {
+            .st-ov-icon { width: 76px; height: 76px; }
+            .st-ov-icon svg { width: 38px; height: 38px; }
+            .st-ov-top { font-size: 17px; }
+            .st-ov-sub { font-size: 15px; }
+        }
+
+        .st-meta { padding: 12px 14px 4px; }
+        .st-title { font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 700; line-height: 1.35; color: #fff; margin: 0 0 10px; }
+        .st-channel { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid #272727; }
+        .st-avatar {
+            width: 36px; height: 36px; border-radius: 50%; background: #c00; color: #fff;
+            display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px;
+        }
+        .st-ch-name { font-size: 15px; font-weight: 700; color: #fff; }
+        .st-ch-sub { font-size: 13px; color: #aaa; }
+        .st-share {
+            margin-left: auto; background: #272727; color: #fff; border: none; border-radius: 18px;
+            padding: 8px 14px; font-size: 14px; font-weight: 600; cursor: pointer;
+        }
+
+        .st-note { padding: 12px 14px; font-size: 14px; color: #aaa; line-height: 1.5; }
+
+        /* Offer box keeps the PSA styling, on a light card */
+        .st-offer-wrap { background: #fff; color: #111; border-radius: 10px; margin: 8px 10px 0; overflow: hidden; }
+
+        /* "Get Access Now" button over the video once the offer drops (same as v1) */
+        .secure-button-overlay {
+            display: none; position: absolute; right: 12px; bottom: 12px; z-index: 20;
+            background: #22c55e; color: #fff; font-weight: 700; font-size: 14px;
+            padding: 10px 18px; border-radius: 24px; text-decoration: none;
+            align-items: center; justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.35); cursor: pointer; border: none;
+            animation: secureButtonPulse 2s infinite;
+        }
+        .secure-button-overlay:hover { background: #1ea34f; }
+        @keyframes secureButtonPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+        .st-footer {
+            text-align: center; padding: 22px 16px 28px; font-size: 11px; color: #888;
+            max-width: 860px; margin: 18px auto 0; line-height: 1.7;
+        }
+        .st-footer a { color: #888; }
+    </style>
+</head>
+<body>
+    <div class="sound-strip">🔊 Sound on: the training starts below</div>
+
+    <div class="st-header">
+        <div class="st-header-inner">
+            <div class="st-logo-box"><div class="st-logo-tri"></div></div>
+            <span class="st-brand">Pocket-Sized ATM</span>
+            <div class="st-now" id="st-now"><span class="st-now-dot"></span>Now playing</div>
+        </div>
+    </div>
+
+    <div class="st-page">
+        <div class="st-video">
+            <button type="button" id="secure-button-overlay" class="secure-button-overlay" onclick="scrollToOffer()">
+                Get Access Now
+            </button>
+
+            <div class="wistia-wrapper" id="st-player"></div>
+
+            <div class="st-overlay" id="st-overlay" role="button" aria-label="Turn on sound">
+                <div class="st-ov-icon" id="st-ov-icon"></div>
+                <div class="st-ov-top" id="st-ov-top">Your video has already started</div>
+                <div class="st-ov-sub" id="st-ov-sub">Tap here to turn on the sound</div>
+            </div>
+        </div>
+
+        <div class="st-meta">
+            <!-- Headline: Taha can change this line -->
+            <h1 class="st-title">Watch: The 7-Minute-a-Day Phone Method</h1>
+            <div class="st-channel">
+                <div class="st-avatar">PA</div>
+                <div>
+                    <div class="st-ch-name">Pocket-Sized ATM</div>
+                    <div class="st-ch-sub">Training video</div>
+                </div>
+                <button type="button" class="st-share" onclick="stShare()">Share</button>
+            </div>
+        </div>
+
+        <div class="st-note">Watch the whole video. Access details are shown at the end of the training.</div>
+
+        <div class="st-offer-wrap">
+
+                <div id="offer-section" x-data="{ show: false }" x-init="
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.get('showoffer') === '1') {
+                        show = true;
+                    } else {
+                        setTimeout(() => show = true, 1089000);
+                    }
+                ">
+                    <div x-show="show" x-cloak class="border-2 border-green-700 rounded-xl mx-3 my-3 pb-6 bg-white">
+                        <div>
+                            <div class="bg-green-700 font-serif text-white text-2xl font-semibold tracking-wide text-center leading-tight py-4">
+                                <h1>Unlock Your Copy<br />of the Pocket-Sized ATM</h1>
+                            </div>
+                        </div>
+                        <div class="mx-5">
+                            <img src="/images/product.webp" class="w-full h-auto" alt="Product Image" />
+                        </div>
+                        <div class="grid grid-cols-3 rounded-xl h-20 mx-4 mt-4 text-white text-sm font-medium">
+                            <div class="bg-[#8d5cc7] rounded-l-xl flex items-center justify-center gap-1 text-center px-1">
+                                <img alt="special discount icon" class="w-auto h-10 opacity-20 lg:opacity-100 absolute lg:relative" src="/images/special_discount.webp" />
+                                <span class="leading-tight">Special Discount</span>
+                            </div>
+                            <div class="bg-[#5590d8] flex items-center justify-center gap-1 text-center px-1">
+                                <img alt="instant access icon" class="w-auto h-10 opacity-20 lg:opacity-100 absolute lg:relative" src="/images/instant_access.webp" />
+                                <span class="leading-tight">Instant<br />Access</span>
+                            </div>
+                            <div class="bg-[#249e24] rounded-r-xl flex items-center justify-center gap-1 text-center px-1">
+                                <img alt="quick start icon" class="w-auto h-10 opacity-20 lg:opacity-100 absolute lg:relative" src="/images/quick_start.webp" />
+                                <span class="leading-tight">Quick-Start Bonuses</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center mt-4">
+                            <img class="mb-4 w-12" alt="left arrow" src="/images/left_arrow.png" />
+                            <div>
+                                <div class="font-serif text-xl font-bold text-center">Today For Just</div>
+                                <div class="font-serif text-[54px] font-bold text-center -mt-3 text-blue-950">47$</div>
+                            </div>
+                            <img class="mb-4 w-12" alt="right arrow" src="/images/right_arrow.png" />
+                        </div>
+                        <div class="flex items-center justify-center px-2">
+                            <a href="https://www.checkout-ds24.com/product/728417?utm_source=fblive"><img alt="order now button" src="/images/order-now-100mbg.webp" /></a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="st-footer">
+        <a href="/tos">Privacy Policy and Terms of Use</a> · <a href="/cdn-cgi/l/email-protection#ed8698838988839e989d9d829f99ad998c9e8e8588838f8c838682808c99c38e8280">Contact</a><br>
+        Copyright © 2026 Pocket-Sized ATM. All Rights Reserved.<br>
+        Results vary. This training does not guarantee any income.<br>
+        This website is not part of the Facebook website or Facebook Inc. FACEBOOK is a trademark of FACEBOOK, Inc.
+    </div>
+
+    <script>
+        // ── Video: starts by itself (muted), big "tap for sound" overlay ──
+        // One tap restarts it from the top with sound. If the phone blocks
+        // autoplay (e.g. low-power mode), the overlay becomes "tap to watch".
+        // Same Wistia videos as /ds/live.
+        let globalVideo;
+        let globalMobileVideo;
+        (function loadWistiaVideo() {
+            const isMobile = window.matchMedia('(max-width: 767px)').matches;
+            const videoId = isMobile ? "xusuhfbcg0" : "lvxuebbfgu";
+
+            const holder = document.getElementById('st-player');
+            const embed = document.createElement('div');
+            embed.className = 'wistia_embed wistia_async_' + videoId;
+            embed.style.cssText = 'width:100%;height:100%;';
+            holder.appendChild(embed);
+
+            const overlay = document.getElementById('st-overlay');
+            const icon = document.getElementById('st-ov-icon');
+            const top = document.getElementById('st-ov-top');
+            const sub = document.getElementById('st-ov-sub');
+            const now = document.getElementById('st-now');
+            const SPEAKER = '<svg viewBox="0 0 24 24" fill="#fff"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
+            const PLAY = '<svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>';
+            let started = false;
+
+            function showOverlay(mode) {
+                if (mode === 'sound') {
+                    icon.innerHTML = SPEAKER;
+                    top.textContent = 'Your video has already started';
+                    sub.textContent = 'Tap here to turn on the sound';
+                } else {
+                    icon.innerHTML = PLAY;
+                    top.textContent = 'Tap to watch the training';
+                    sub.textContent = 'Turn your sound on';
+                }
+                overlay.classList.add('on');
+            }
+
+            window._wq = window._wq || [];
+            _wq.push({
+                id: videoId,
+                options: {
+                    videoFoam: true, autoPlay: true, muted: true, silentAutoPlay: 'allow', playsinline: true,
+                    playbar: false, playButton: false, smallPlayButton: false, volumeControl: false,
+                    settingsControl: false, fullscreenButton: false, playPauseNotifier: false, controlsVisibleOnLoad: false
+                },
+                onReady: function (v) {
+                    if (isMobile) globalMobileVideo = v; else globalVideo = v;
+                    v.bind('play', function () {
+                        now.classList.add('on');
+                        if (!started && v.isMuted()) showOverlay('sound');
+                    });
+                    setTimeout(function () {
+                        if (!started && v.state() !== 'playing') showOverlay('play');
+                    }, 2500);
+                    overlay.addEventListener('click', function () {
+                        started = true;
+                        overlay.classList.remove('on');
+                        v.unmute(); v.volume(1); v.time(0); v.play();
+                    });
+                }
+            });
+        })();
+
+        function stShare() {
+            if (navigator.share) { navigator.share({ title: document.title, url: location.href }).catch(function () {}); }
+            else if (navigator.clipboard) { navigator.clipboard.writeText(location.href); }
+        }
+
+        // ── "Get Access Now" button over the video, same timing as the offer box (18:09) ──
+        function scrollToOffer() {
+            const el = document.getElementById('offer-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        (function () {
+            const showBtn = function () { const b = document.getElementById('secure-button-overlay'); if (b) b.style.display = 'flex'; };
+            if (new URLSearchParams(location.search).get('showoffer') === '1') showBtn();
+            else setTimeout(showBtn, 1089000);
+        })();
+    </script>
+
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"c4ae4efcd666400eb10e36884ae74d02","r":1}' crossorigin="anonymous"></script>
+
+<script>
+(function () {
+  const currentParams = new URLSearchParams(window.location.search);
+  if (!currentParams.toString()) return;
+
+  document.querySelectorAll('a[href]').forEach(function (link) {
+    try {
+      const url = new URL(link.href, window.location.origin);
+
+      currentParams.forEach((value, key) => {
+        if (!url.searchParams.has(key)) {
+          url.searchParams.set(key, value);
+        }
+      });
+
+      link.href = url.toString();
+    } catch (e) {}
+  });
+})();
+</script>
+
+
+<script>
+(function () {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("pz") === "vdrd") {
+        localStorage.setItem("pz", "vdrd");
+    }
+})();
+</script>
+
+
+
+<script>
+(function () {
+    const params = new URLSearchParams(window.location.search);
+
+    // Persist the important direct-tracking values so Digistore redirects/splits
+    // do not lose the affiliate attribution.
+    const persistKeys = ["aff", "pz"];
+
+    persistKeys.forEach(function (key) {
+        const value = params.get(key);
+        if (value) {
+            try {
+                localStorage.setItem(key, value);
+            } catch (e) {}
+        }
+    });
+
+    // Read URL first, then fall back to localStorage.
+    function getTrackingValue(key) {
+        const fromUrl = params.get(key);
+        if (fromUrl) return fromUrl;
+
+        try {
+            return localStorage.getItem(key);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    const aff = getTrackingValue("aff");
+    const pz = getTrackingValue("pz");
+
+    // Add affiliate/tracking params to every Digistore24 checkout link.
+    document.querySelectorAll('a[href*="checkout-ds24.com/product/"]').forEach(function (link) {
+        try {
+            const url = new URL(link.href);
+
+            if (aff) {
+                url.searchParams.set("aff", aff);
+            }
+
+            if (pz) {
+                url.searchParams.set("pz", pz);
+            }
+
+            // Preserve useful incoming attribution params as well.
+            params.forEach(function (value, key) {
+                if (
+                    key === "aff" ||
+                    key === "pz" ||
+                    key === "showoffer" ||
+                    key.startsWith("utm_") ||
+                    key === "tid" ||
+                    key === "subid"
+                ) {
+                    url.searchParams.set(key, value);
+                }
+            });
+
+            link.href = url.toString();
+        } catch (e) {}
+    });
+})();
+</script>
+
+</body>
+</html>
