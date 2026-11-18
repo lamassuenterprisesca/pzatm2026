@@ -583,9 +583,8 @@
   }
 </style>
 
-<script src="https://fast.wistia.com/player.js" async></script>
-<script src="https://fast.wistia.com/embed/pj97y80wxq.js" async type="module"></script>
-<style>wistia-player[media-id='pj97y80wxq']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/pj97y80wxq/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
+<link rel="preconnect" href="https://members.getphoenixofficial.com" crossorigin>
+<script src="https://members.getphoenixofficial.com/lv/p.js" async></script>
 </head>
 
 <body>
@@ -669,10 +668,8 @@
   <div id="videoModalInner">
     <span class="close-btn" onclick="closeVideoModal()">✖</span>
 
-    <wistia-player
-      id="welcomeVideo"
-      media-id="pj97y80wxq"
-      aspect="1.7777777777777777"></wistia-player>
+    <!-- Welcome video: our own player (members.getphoenixofficial.com/lv/p.js), same video id as the old Wistia player -->
+    <div id="welcomeVideo" class="wistia_embed wistia_async_pj97y80wxq" style="width:100%;aspect-ratio:16/9;"></div>
 
     <div class="video-modal-btn-wrap">
       <a class="video-modal-btn"
@@ -721,10 +718,9 @@
 function openVideoModal() {
   document.getElementById("videoModal").style.display = "flex";
 
-  const player = document.getElementById("welcomeVideo");
-  if (player && typeof player.play === "function") {
-    player.play();
-  }
+  /* plays from the click, as before */
+  window._wq = window._wq || [];
+  window._wq.push({ id: "pj97y80wxq", onReady: function (video) { video.play(); } });
 
   document.body.style.overflow = "hidden";
 }
@@ -732,10 +728,8 @@ function openVideoModal() {
 function closeVideoModal() {
   document.getElementById("videoModal").style.display = "none";
 
-  const player = document.getElementById("welcomeVideo");
-  if (player && typeof player.pause === "function") {
-    player.pause();
-  }
+  window._wq = window._wq || [];
+  window._wq.push({ id: "pj97y80wxq", onReady: function (video) { video.pause(); } });
 
   document.body.style.overflow = "";
 }
